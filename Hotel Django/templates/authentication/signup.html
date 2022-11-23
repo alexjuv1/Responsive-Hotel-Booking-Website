@@ -1,0 +1,65 @@
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Hotel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="static/css/signin2.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Hotel SignUp</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action="/signup" method="post">
+                {% csrf_token %}  
+					<label for="">Username</label>
+					<input type="text" id="username" name="username" placeholder="Username" required="">
+					<br>
+					<label for="">First Name</label>
+					<input type="text" id="fname" name="fname" placeholder="First Name" required="">
+					<br>
+					<label for="">Last Name</label>
+					<input type="text" id="lname" name="lname" placeholder="Last Name" required="">
+					<br>
+					<label for="">Email Address</label>
+					<input type="email" id="email" name="email" placeholder="Email" required="">
+					<br>
+					<label for="">Password</label>
+					<input type="password" id="password" name="password" placeholder="Password" required="">
+					<br>
+					<label for="">Confirm your Password</label>
+					<input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required="">
+					<br>
+					<div class="wthree-text">
+						<label class="anim">
+							<input type="checkbox" class="checkbox" required="">
+							<span>I Agree To The Terms & Conditions</span>
+							<label class="anim">
+								<input type="checkbox" class="checkbox" required="">
+								<span>I'm not a robot</span>
+						</label>
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="SIGNUP">
+				</form>
+				<p>Already Have an Account? <a href="/signin"> Signin Now!</a></p>
+			</div>
+		</div>
+		
+	<!-- //main -->
+</body>
+</html>
