@@ -5,4 +5,8 @@ from .models import users
 
 def index(response, id):
     ls = users.objects.get(id=id)
-    return HttpResponse("<h1>%s</h1>" % ls.first_name)
+    #return HttpResponse("<h1>%s</h1>" % ls.first_name)
+    return render(response, "main/base.html", {})
+
+def home(response):
+    return render(response, "main/home.html", {})
