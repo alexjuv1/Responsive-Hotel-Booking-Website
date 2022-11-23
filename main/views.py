@@ -5,4 +5,4 @@ from .models import users
 
 def index(response, id):
     ls = users.objects.get(id=id)
-    return HttpResponse("<h1>%s</h1>" % ls.email)
+    return HttpResponse("<h1>%s</h1>" % ls.first_name)
