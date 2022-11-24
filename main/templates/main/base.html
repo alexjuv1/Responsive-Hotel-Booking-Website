@@ -1,9 +1,12 @@
 <html>
     <head>
-        <title>351 Hotel</title>
+
+        <title>{% block title %}351 Hotel{% endblock %}</title>
     </head>
 
     <body>
-        <p>Base Template</p>
+        <p>User: {{name}}</p>
+        {% block content %}
+        {% endblock %}
     </body>
 </html>
