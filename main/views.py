@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import users
+from .forms import CreateNewList
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 # def index(response, email, password):
@@ -11,8 +13,19 @@ def index(response, id):
     return render(response, "main/viewUserData.html", {"ls": ls})
 
 def home(response):
-
     return render(response, "main/home.html", {})
 
 def create(response):
-    return render(response, "main/create.html", {})
+    if response.method == "POST":
+        form = CreateNewList(response.POST)
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            t = users(first_name=n, age=0)
+            t.save()
+
+        return HttpResponseRedirect("/%i" %t.id)
+
+    else:
+        form = CreateNewList()
+    return render(response, "main/create.html", {"form" : form})
+
