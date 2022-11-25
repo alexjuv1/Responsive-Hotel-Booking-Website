@@ -29,8 +29,8 @@ class admin(models.Model):
         return (self.email)
 
 class history(models.Model):
-    room_id = models.ForeignKey(room, on_delete=models.CASCADE)
-    client_id = models.ForeignKey(users, on_delete=models.CASCADE)
+    room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
+    client_id = models.ForeignKey(users, on_delete=models.DO_NOTHING)
     days_spent = models.IntegerField()
     total_price = models.IntegerField()
     review = models.TextField()
@@ -38,8 +38,8 @@ class history(models.Model):
         return(self.room_id + " " + self.client_id)
 
 class reservation(models.Model):
-    room_id = models.ForeignKey(room, on_delete=models.CASCADE)
-    client_id = models.ForeignKey(users, on_delete=models.CASCADE)
+    room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
+    client_id = models.ForeignKey(users, on_delete=models.DO_NOTHING)
     start_date1 = models.IntegerField()
     end_date1 = models.IntegerField()
     def __str__(self):
