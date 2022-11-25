@@ -19,17 +19,14 @@ def home(response):
 def create(response):
     if response.method == "POST":
         form = CreateNewList(response.POST)
-        #form = RegisterForm(response.POST)
         if form.is_valid():
             n = form.cleaned_data["name"]
             t = users(first_name=n, age=0)
             t.save()
 
         return HttpResponseRedirect("/%i" %t.id)
-        #return HttpResponseRedirect("")
 
     else:
         form = CreateNewList()
-        #form = RegisterForm()
     return render(response, "main/create.html", {"form" : form})
 
