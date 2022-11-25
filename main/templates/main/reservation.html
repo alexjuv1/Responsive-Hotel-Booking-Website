@@ -1,0 +1,45 @@
+{% extends "main/base.html" %}
+
+<title>{% block title %}
+Reserve
+{% endblock %}</title>
+
+{% block content %}
+
+<h1>Reservation page</h1>
+
+<body>Please fill the below criteria according to your preference. The rooms will be shown accordingly.</body>
+
+
+<div>
+<br>
+<br>
+<label for="Single">Single:</label>
+
+<select name="Single" id="Single">
+  <option value=true>Yes</option>
+  <option value=false>No</option>
+
+</select>
+<br>
+<br>
+<label for="Smoking">Smoking:</label>
+
+<select name="Smoking" id="Smoking">
+  <option value=true>Yes</option>
+  <option value=false>No</option>
+
+</select>
+
+<br>
+<br>
+<form method="post" action="/home">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="button button1", type="submit", name = "save"> Search </button>
+</form>
+
+</div>
+{% endblock %}
+
+
