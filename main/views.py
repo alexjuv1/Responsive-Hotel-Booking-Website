@@ -35,3 +35,6 @@ def create(response):
 def view(response):
     return render(response, "main/view.html")
 
+def reserve(response):
+    return render(response, "main/reservation.html")
+
