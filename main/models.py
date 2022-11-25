@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class room(models.Model):
@@ -30,7 +31,7 @@ class admin(models.Model):
 
 class history(models.Model):
     room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
-    client_id = models.ForeignKey(users, on_delete=models.DO_NOTHING)
+    client_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     days_spent = models.IntegerField()
     total_price = models.IntegerField()
     review = models.TextField(default = "NONE")
@@ -39,10 +40,16 @@ class history(models.Model):
 
 class reservation(models.Model):
     room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
-    client_id = models.ForeignKey(users, on_delete=models.DO_NOTHING)
+    client_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     start_date1 = models.IntegerField()
     end_date1 = models.IntegerField()
     def __str__(self):
         return(self.room_id + " " + self.client_id)
 
+class testmod(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="tmod", null=True)
+    test1 = models.CharField(max_length=200, default="NONE")
+    def __str__(self):
+        return(this.name1)
+    
 
