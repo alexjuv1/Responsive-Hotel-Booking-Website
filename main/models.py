@@ -17,7 +17,7 @@ class users(models.Model):
     password = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    age = models.IntegerField()
+    age = models.IntegerField(default = 0)
     status = models.CharField(max_length=255)
     def __str__(self):
         return (self.first_name + " " + self.last_name)
@@ -33,7 +33,7 @@ class history(models.Model):
     client_id = models.ForeignKey(users, on_delete=models.DO_NOTHING)
     days_spent = models.IntegerField()
     total_price = models.IntegerField()
-    review = models.TextField()
+    review = models.TextField(default = "NONE")
     def __str__(self):
         return(self.room_id + " " + self.client_id)
 
