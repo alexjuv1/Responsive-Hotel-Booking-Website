@@ -40,10 +40,15 @@
         <div class="sidenav"> 
             <a href = "/"> Home </a>
             <a href = "/create"> Create </a>
-            <a href = "/10"> View </a>
+            <a href = "/view"> View </a>
         </div>
         <div id = "content", name="content", class="main">
             <h1>351 Hotel</h1>
+            {% if user.is_authenticated %}
+                <p>Log out <a href="/logout">Here</a></p>
+            {% else %}
+                <p>Log in <a href="/login">Here</a></p>
+            {% endif %}
             {% block content %}
             {% endblock %}
         </div>
