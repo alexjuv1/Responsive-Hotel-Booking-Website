@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
-from .forms import CreateNewList
+from .forms import Reservation
 from django.http import HttpResponseRedirect
 #from .forms import RegisterForm
 # Create your views here.
@@ -18,7 +18,7 @@ def home(response):
 
 def create(response):
     if response.method == "POST":
-        form = CreateNewList(response.POST)
+        form = Reservation(response.POST)
         if form.is_valid():
             n = form.cleaned_data["name"]
             t = testmod(test1=n)
@@ -29,8 +29,13 @@ def create(response):
         return HttpResponseRedirect("/")
 
     else:
-        form = CreateNewList()
-    return render(response, "main/create.html", {"form" : form})
+        form = Reservation()
+    return render(response, "main/reservation.html", {"form" : form})
+
+def reservation(response):
+    if response.method == "POST":
+        selected_value1 = request.POST.get('Smoking')
+        selected_value2 = request.POST.get('Single')
 
 def view(response):
     return render(response, "main/view.html")
