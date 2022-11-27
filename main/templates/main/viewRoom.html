@@ -5,9 +5,10 @@ Room {{ls.room_number}}
 
 {% block content %}
 
-<form method = "post", action ="checkout\", id = "roomRes">
-<p>Welcome to room</p><p name="roomnum"> {{ls.room_number}}</p>
+
+<p>Welcome to room {{ls.room_number}}</p>
 {% csrf_token %}
+<br>
 <p>Price per night: {{ls.price_per_night}}</p>
 <br>
 <p>Single: {{ls.single}}</p>
@@ -16,6 +17,9 @@ Room {{ls.room_number}}
 <br>
 <p>Stars: {{ls.stars}}</p>
 <br>
+<form method = "post", action ="checkout\", id = "roomRes">
+    {{form.hidden_tag()}}
+<input id = "room_number" name = "room_number" type = "hidden" value = "{{ls.room_number}}">
 <button class="button button1", type="submit", name = "book", form = "roomForm"> Book now! </button>
 </form>
 {% endblock %}
