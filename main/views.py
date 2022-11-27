@@ -1,9 +1,14 @@
 import django
 from django.shortcuts import render
 from django.http import HttpResponse
+<<<<<<< HEAD
 from .models import users
 from .models import reservation
 from .forms import CreateNewList
+=======
+from .models import *
+from .forms import roomForm
+>>>>>>> 216e16a5bb31ce442488143ace4a2e24031257f9
 from django.http import HttpResponseRedirect
 #from .forms import RegisterForm
 # Create your views here.
@@ -11,26 +16,45 @@ from django.http import HttpResponseRedirect
 # def index(response, email, password):
 #     ls = users.objects.get(email == email and password == password)
 def index(response, id):
-    ls = users.objects.get(id = id)
-    #return HttpResponse("<h1>%s</h1>" % ls.first_name)
-    return render(response, "main/viewUserData.html", {"ls": ls})
+    ls = room.objects.get(room_number=id)
+    return render(response, "main/viewRoom.html", {"ls": ls})
 
 def home(response):
     return render(response, "main/home.html", {})
 
 def create(response):
     if response.method == "POST":
-        form = CreateNewList(response.POST)
+        form = roomForm(response.POST)
         if form.is_valid():
             n = form.cleaned_data["name"]
-            t = users(first_name=n, age=0)
+            t = testmod(test1=n)
             t.save()
+            response.user.tmod.add(t)
+            
 
-        return HttpResponseRedirect("/%i" %t.id)
+        return HttpResponseRedirect("/")
 
     else:
-        form = CreateNewList()
-    return render(response, "main/create.html", {"form" : form})
+        form = roomForm()
+    return render(response, "main/reservation.html", {"form" : form})
+
+def roomShow(response):
+    smoking = response.POST.get('Smoking', False)
+    single = response.POST.get('Single', False)
+    rooms = room.objects.all()
+    return render(response, "main/roomShow.html", {"smoking":smoking, "single":single, "rooms":rooms}) 
+
+def checkOut(response):
+    roomid = response.POST.get('roomnum')
+    roomObj = room.objects.get(room_number = roomid)
+    return render(response, "main/checkOut.html", {"roomObj":roomObj})
+
+def view(response):
+
+    return render(response, "main/view.html")
+
+def reserve(response):
+    return render(response, "main/reservation.html")
 
 def profile(response):
     currentUser = response.user

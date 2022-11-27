@@ -1,5 +1,8 @@
 from django import forms
 
-class CreateNewList(forms.Form):
-    name = forms.CharField(label="Name", max_length=200)
-    check = forms.BooleanField()
+class roomForm(forms.Form):
+    smoking = forms.BooleanField(label = "smoking")
+    single = forms.BooleanField(label = "single")
+
+class roomRes(forms.Form):
+    roomNum = forms.IntegerField(label = "roomnum")

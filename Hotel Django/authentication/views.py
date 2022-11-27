@@ -119,3 +119,8 @@ def activate(request, uidb64, token):
     else:
         return render(request,'activationfailed.html')    
     
+def homepage(request):
+    return render(request, "authentication/homepage.html")
+
+def book(request):
+    return render(request,"authentication/book.html")
