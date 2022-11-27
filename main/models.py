@@ -41,8 +41,8 @@ class history(models.Model):
 class reservation(models.Model):
     room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
     client_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    start_date1 = models.IntegerField()
-    end_date1 = models.IntegerField()
+    start_date1 = models.DateField()
+    end_date1 = models.DateField()
     def __str__(self):
         return(self.room_id + " " + self.client_id)
 

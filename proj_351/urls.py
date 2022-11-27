@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from register import views as v
+
 #from register import templates as temp
 #from django.contrib.auth incl
 
@@ -23,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("main.urls")),
     path("register/", v.register, name="register"),
-    path('register/templates/registration', include("django.contrib.auth.urls"))
+    path('', include("django.contrib.auth.urls"))
 ]
