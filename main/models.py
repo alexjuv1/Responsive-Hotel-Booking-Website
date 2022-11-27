@@ -11,7 +11,7 @@ class room(models.Model):
     stars = models.IntegerField()
 
     def __str__(self):
-        return (str(self.room_number))
+        return ("Room"+str(self.room_number))
 
 class users(models.Model):
     email = models.CharField(max_length=255)
