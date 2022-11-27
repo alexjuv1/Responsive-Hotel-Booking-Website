@@ -1,14 +1,9 @@
 import django
 from django.shortcuts import render
 from django.http import HttpResponse
-<<<<<<< HEAD
-from .models import users
-from .models import reservation
-from .forms import CreateNewList
-=======
 from .models import *
 from .forms import roomForm
->>>>>>> 216e16a5bb31ce442488143ace4a2e24031257f9
+from .forms import CreateNewList
 from django.http import HttpResponseRedirect
 #from .forms import RegisterForm
 # Create your views here.
@@ -52,6 +47,9 @@ def checkOut(response):
 def view(response):
 
     return render(response, "main/view.html")
+
+def reserve(response):
+    return render(response, "main/reservation.html")
 
 def reserve(response):
     return render(response, "main/reservation.html")

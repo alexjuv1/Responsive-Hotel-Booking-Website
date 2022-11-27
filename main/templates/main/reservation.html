@@ -15,14 +15,6 @@ Reserve
 
 <br>
 <br>
-<<<<<<< HEAD
-<form method="post" action="\main\templates\main\roomShow">
-    <label for="Single">Single:</label>
-
-<select name="Single" id="Single">
-  <option value=true>Yes</option>
-  <option value=false>No</option>
-=======
 <form method="post", action="roomShow\", id = "roomForm">
   {% csrf_token %}
     <label for="Single">Single:</label>
@@ -30,7 +22,6 @@ Reserve
 <select name="Single" id="Single">
   <option value="True">Yes</option>
   <option value="False">No</option>
->>>>>>> 216e16a5bb31ce442488143ace4a2e24031257f9
 
 </select>
 <br>
@@ -38,20 +29,12 @@ Reserve
 <label for="Smoking">Smoking:</label>
 
 <select name="Smoking" id="Smoking">
-<<<<<<< HEAD
-  <option value=true>Yes</option>
-  <option value=false>No</option>
-
-</select>
-    <button class="button button1", type="submit", name = "save"> Search </button>
-=======
   <option value="True">Yes</option>
   <option value="False">No</option>
 </select>
 <br>
 <br>
     <button class="button button1", type="submit", name = "save", form = roomForm> Search </button>
->>>>>>> 216e16a5bb31ce442488143ace4a2e24031257f9
 </form>
 
 </div>
