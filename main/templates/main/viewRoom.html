@@ -4,7 +4,10 @@ Room {{ls.room_number}}
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to room {{ls.room_number}}</h1>
+
+<form method = "post", action ="checkout\", id = "roomRes">
+<p>Welcome to room</p><p name="roomnum"> {{ls.room_number}}</p>
+{% csrf_token %}
 <p>Price per night: {{ls.price_per_night}}</p>
 <br>
 <p>Single: {{ls.single}}</p>
@@ -12,4 +15,7 @@ Room {{ls.room_number}}
 <p>Smoking: {{ls.smoking}} </p>
 <br>
 <p>Stars: {{ls.stars}}</p>
+<br>
+<button class="button button1", type="submit", name = "book", form = "roomForm"> Book now! </button>
+</form>
 {% endblock %}

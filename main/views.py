@@ -37,6 +37,10 @@ def roomShow(response):
     rooms = room.objects.all()
     return render(response, "main/roomShow.html", {"smoking":smoking, "single":single, "rooms":rooms}) 
 
+def checkOut(response):
+    roomid = response.POST.get('roomnum')
+    roomObj = room.objects.get(room_number = roomid)
+    return render(response, "main/checkOut.html", {"roomObj":roomObj})
 
 def view(response):
 
