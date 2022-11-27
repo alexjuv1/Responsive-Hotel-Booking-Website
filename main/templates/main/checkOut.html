@@ -4,6 +4,15 @@ Check Out
 {% endblock %}
 {%block content%}
 <h1> Room reservation checkout </h1>
-<h2> Room details </h2>
-{{roomObj}}
+<h2> Choose duration and dates of booking </h2>
+<body>
+<form method = "post", action ="\confirmationPage", id = "reservationTimes">
+    {% csrf_token %}
+{{reservationTimes.start_date}}
+{{reservationTimes.end_date}}
+<input type = "date" id = "start_date">
+<input type = "date" id = "end_date">
+<button class="button button1", type="submit", name = "save", form = roomForm> Confirm </button>
+</form>
+</body> 
 {% endblock %}

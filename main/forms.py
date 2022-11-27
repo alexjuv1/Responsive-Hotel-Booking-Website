@@ -6,3 +6,10 @@ class roomForm(forms.Form):
 
 class roomRes(forms.Form):
     roomNum = forms.IntegerField(label = "roomnum")
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class reservationTimes(forms.Form):
+    start_date = forms.DateField(widget = DateInput, label = "start_date")
+    end_date = forms.DateField(widget= DateInput , label = "end_date")

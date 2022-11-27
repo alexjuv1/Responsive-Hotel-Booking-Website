@@ -9,7 +9,7 @@
 <h1> Profile Page </h1>
 {% if user.is_authenticated %}
         <h2>Personal Information:</h2>
-            <p>NAME: </p>
+            <p>NAME: {{user.username}}</p>
         <h2>Your Previous Reservations:</h2>
         {% for room in ls %}
             <li>{{ room.room_id }} from {{ room.start_date }} till {{ room.end_date}} </li>
