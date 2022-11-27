@@ -1,0 +1,20 @@
+{% extends "main\base.html" %}
+<title>
+    {% block title %}
+    User Profile
+    {% endblock %}
+</title>
+
+{% block content %}
+{% if user.is_authenticated %}
+        <h2>Personal Information:</h2>
+            <p>NAME: {{</p>
+        <h2>Your Previous Reservations:</h2>
+        {% for room in ls %}
+            <li>{{ room.room_id }} from {{ room.start_date }} till {{ room.end_date}} </li>
+        {% endfor %}
+{% else %}
+        <p>It seems that you are not logged in. Log in <a href="/login">here</a> or <a href="/register">register</a> to make a new account!</p>
+{% endif %}
+
+{% endblock %}

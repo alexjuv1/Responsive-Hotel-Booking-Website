@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class room(models.Model):
@@ -39,7 +40,7 @@ class history(models.Model):
 
 class reservation(models.Model):
     room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
-    client_id = models.ForeignKey(users, on_delete=models.DO_NOTHING)
+    client_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     start_date1 = models.IntegerField()
     end_date1 = models.IntegerField()
     def __str__(self):
