@@ -1,4 +1,4 @@
-"""proj_351 URL Configuration
+"""gfg URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -14,15 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from register import views as v
-
-#from register import templates as temp
-#from django.contrib.auth incl
+from django.urls import path , include 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("Hotel Django.gfg.urls")),
-    path("register/", v.register, name="register"),
-    path('', include("django.contrib.auth.urls"))
+    path('' , include('authentication.urls')),
 ]
