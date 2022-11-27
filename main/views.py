@@ -9,9 +9,8 @@ from django.http import HttpResponseRedirect
 # def index(response, email, password):
 #     ls = users.objects.get(email == email and password == password)
 def index(response, id):
-    ls = User.objects.get(id = id)
-    #return HttpResponse("<h1>%s</h1>" % ls.first_name)
-    return render(response, "main/viewUserData.html", {"ls": ls})
+    ls = room.objects.get(room_number=id)
+    return render(response, "main/viewRoom.html", {"ls": ls})
 
 def home(response):
     return render(response, "main/home.html", {})
@@ -40,6 +39,7 @@ def roomShow(response):
 
 
 def view(response):
+
     return render(response, "main/view.html")
 
 def reserve(response):

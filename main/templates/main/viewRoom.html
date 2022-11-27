@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Room {{ls.room_number}}
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to room {{ls.room_number}}</h1>
+<p>Price per night: {{ls.price_per_night}}</p>
+<br>
+<p>Single: {{ls.single}}</p>
+<br>
+<p>Smoking: {{ls.smoking}} </p>
+<br>
+<p>Stars: {{ls.stars}}</p>
+{% endblock %}

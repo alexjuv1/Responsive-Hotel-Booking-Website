@@ -9,18 +9,18 @@ Available rooms
 {% for room in rooms %}
     {% if smoking == "True" and room.smoking%}
     {% if single == "True" and room.single%}
-    <p>Room {{room.room_number}}</p>
+    <p> <a href = /roomShow/{{room.room_number}}> Room {{room.room_number}} </a></p>
     <br>
     {% elif single == "False" and not room.single%}
-    <p>Room {{room.room_number}}</p>
+    <p> <a href = /roomShow/{{room.room_number}}> Room {{room.room_number}} </a></p>
     <br>
     {% endif %}
 {% elif smoking == "False" and not room.smoking%}
     {% if single == "True" and room.single%}
-    <p>Room {{room.room_number}}</p>
+    <p> <a href = /roomShow/{{room.room_number}}> Room {{room.room_number}} </a></p>
     <br>
     {% elif single == "False" and not room.single%}
-    <p>Room {{room.room_number}}</p>
+    <p> <a href = /roomShow/{{room.room_number}}> Room {{room.room_number}} </a></p>
     <br>
     {% endif %}
 {% endif %}
