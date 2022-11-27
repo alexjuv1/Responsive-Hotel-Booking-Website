@@ -1,1 +1,30 @@
 {% extends "main\base.html" %}
+{% block title %}
+Available rooms
+{% endblock %}
+
+{% block content %}
+<h1>Available Rooms</h1>
+
+{% for room in rooms %}
+    {% if smoking == "True" and room.smoking%}
+    {% if single == "True" and room.single%}
+    <p>Room {{room.room_number}}</p>
+    <br>
+    {% elif single == "False" and not room.single%}
+    <p>Room {{room.room_number}}</p>
+    <br>
+    {% endif %}
+{% elif smoking == "False" and not room.smoking%}
+    {% if single == "True" and room.single%}
+    <p>Room {{room.room_number}}</p>
+    <br>
+    {% elif single == "False" and not room.single%}
+    <p>Room {{room.room_number}}</p>
+    <br>
+    {% endif %}
+{% endif %}
+{% endfor %}
+
+
+{% endblock %}
