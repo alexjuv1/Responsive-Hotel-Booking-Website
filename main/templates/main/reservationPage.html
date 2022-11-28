@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% for i in D %}
+<table class="table table-bordered">
+    <tr>
+        <td>
+            <br /> {{i.room_number}}<span></span>
+            <br /> {{i.price_per_night}}<span></span>
+            <br /> room.Title<span></span>
+            <br /> room.Room Number<span></span>
+            <br /> room.Room Cost <span></span>
+            <br />  room.Type <span></span>
+        </td>
+
+        <td>
+            <a href="#"><input type="submit" class="btn btn-primary" value="Book Now"/></a>
+        </td>
+    </tr>
+</table>
+{% endfor %}
