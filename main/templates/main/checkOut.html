@@ -6,12 +6,10 @@ Check Out
 <h1> Room reservation checkout </h1>
 <h2> Choose duration and dates of booking </h2>
 <body>
-<form method = "post", action ="\confirmationPage", id = "reservationTimes">
+<form method = "post", action ="\confirmationPage\", id = "reservationTimes">
     {% csrf_token %}
-{{reservationTimes.start_date}}
-{{reservationTimes.end_date}}
-<input type = "date" id = "start_date">
-<input type = "date" id = "end_date">
+<input type = "date" id = "start_date" name = "start_date">
+<input type = "date" id = "end_date" name = "start_date">
 <button class="button button1", type="submit", name = "save", form = roomForm> Confirm </button>
 </form>
 </body> 

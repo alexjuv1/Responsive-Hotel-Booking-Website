@@ -36,8 +36,10 @@ def reserve(response):
     return render(response, "main/reservation.html")
 
 
-def confirmationPage(response):
+def confirmationPage(response, start_date, end_date):
     currentUser = response.user 
+    start_date = response.POST.get("start_date")
+    end_date = response.POST.get("end_date")
     return render(response, "main/confirmationPage.html")
 
 def profile(response):
