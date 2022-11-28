@@ -26,7 +26,7 @@ def roomShow(response):
 def checkOut(response, id):
     form = response.POST.get
     roomObj = room.objects.get(room_number = id)
-    return render(response, "main/checkOut.html", {"roomObj":roomObj})
+    return render(response, "main/checkOut.html", {"roomObj":roomObj, })
 
 def view(response):
 
@@ -35,8 +35,12 @@ def view(response):
 def reserve(response):
     return render(response, "main/reservation.html")
 
-def reserve(response):
-    return render(response, "main/reservation.html")
+
+def confirmationPage(response, start_date, end_date):
+    currentUser = response.user 
+    start_date = response.POST.get("start_date")
+    end_date = response.POST.get("end_date")
+    return render(response, "main/confirmationPage.html")
 
 def profile(response):
     currentUser = response.user

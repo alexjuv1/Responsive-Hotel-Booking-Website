@@ -115,12 +115,12 @@ def activate(request, uidb64, token):
         myuser.is_active = True
         myuser.save()
         login(request, myuser)
-        return redirect('home')
+        return redirect('homepage')
     else:
         return render(request,'activationfailed.html')    
     
 def homepage(request):
-    return render(request, "authentication/homepage.html")
+    return render(request, "authentication/homepages.html")
 
 def book(request):
     return render(request,"authentication/book.html")
