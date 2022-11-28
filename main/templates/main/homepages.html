@@ -41,8 +41,8 @@
             <link rel="stylesheet" href="static\book.css">
             <div class="cont">
                 <div class="heading">
-                  <h5>EXCLUSIVE OFFERS </h5>
-                  <h3>You can get an exclusive offer </h3>
+                  <h5>CUSTOMER FAVORITES</h5>
+                  <h3>Check out our best seller rooms!</h3>
                 </div>
           
                 <div class="content grid2 mtop">
@@ -51,16 +51,16 @@
                       <img src="static/room1.jpg" alt="">
                     </div>
                     <div class="right">
-                      <h4>Deluxe Room</h4>
+                      <h4>iMann Suite 1</h4>
                       <div class="rate flex">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                       </div>
-                      <p> Description.</p>
-                      <h5>Cost/Night</h5>
+                      <p> A comfortable double bed room with an immaculate veiw of the ocean. This room is smoking.</p>
+                      <h5>$350/Night</h5>
                       <button class="flex1"> <a href="/availability"> 
                         <span>Check Availability</span></a>
                         <i class="fas fa-arrow-circle-right"></i>
@@ -72,16 +72,16 @@
                       <img src="static/room2.jpeg" alt="">
                     </div>
                     <div class="right">
-                      <h4>Deluxe Room</h4>
+                      <h4>TCP Dreams</h4>
                       <div class="rate flex">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
                       </div>
-                      <p> Description.</p>
-                      <h5>Cost/Night</h5>
+                      <p> Double bed room with an amazing view, connected to a kids room. This room is anti-smoking</p>
+                      <h5>$500/Night</h5>
                       <button class="flex1"><a href="/availability"> 
                         <span>Check Availability</span></a>
                         <i class="fas fa-arrow-circle-right"></i>
@@ -105,55 +105,41 @@
                 <div class="container">
                     <form method = "POST" , id = "roomRes", action = "checkOut/">
                         <div id="form">
-                            
+                            <br>
+                            <br>
                             <h1 class="text-white text-center">Book Now</h1>
                             
-                            <div id="first-group">
-                                <div id="content">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <input type="text" id= "input-group" placeholder="First Name">
-                                </div>   
-                                <div id="content">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <input type="number" id= "input-group" placeholder="Phone Number">
-                                </div>
+                            <div id="first-group">  
                                 <div id="content">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <text style = "color:white"> Check-in date </text>
                                     <input type="date" id= "start_date" placeholder="Arrival Date mm/dd/yyyy">
                                 </div>   
                                 <div id="content">
-                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                    <select id="input-group" style="background-color: black;">
-                                        <option value="">Number of guests</option>
-                                        <option value="">1-2</option>
-                                        <option value="">3-6</option>
+                                    <i class="fa fa-exclamation" aria-hidden="true"></i>
+                                    <select id="smoking">
+                                        <option value="">Smoking</option>
+                                        <option value="">Yes</option>
+                                        <option value="">No</option>
                                     </select>
                                 </div> 
                             </div>
             
                             <div id="second-group">
                                 <div id="content">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <input type="text" id= "input-group" placeholder="Last Name">
-                                </div> 
-                                <div id="content">
-                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                    <input type="email" id= "input-group" placeholder="Email Address">
-                                </div> 
-                                <div id="content">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <text style = "color:white"> Check-out date </text>
                                     <input type="date" id= "end_date" placeholder="Departure Date  mm/dd/yyyy">
                                 </div> 
                                 <div id="content">
                                     <i class="fa fa-users" aria-hidden="true"></i>
-                                    <select id="input-group" style="background-color: black;">
-                                        <option value="">Room Type</option>
-                                        <option value="">Smoking/Single Bed</option>
-                                        <option value="">Non-smoking</option>
+                                    <select id="single">
+                                        <option value ="">Room type</option>
+                                        <option value="single">Single</option>
+                                        <option value="double">Double</option>
                                     </select>
                                 </div> 
                             </div>
-            
                             <button type="submit" value="Submit" id="submit-btn">Book Now</button>
             
                         </div>
