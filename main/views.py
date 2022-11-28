@@ -15,7 +15,7 @@ def index(response, id):
     return render(response, "main/viewRoom.html", {"ls": ls})
 
 def home(response):
-    return render(response, "main/home.html", {})
+    return render(response, "main/homepages.html", {})
 
 def roomShow(response):
     smoking = response.POST.get('Smoking', False)

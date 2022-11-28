@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
+      
         <meta charset="UTF-8">
         <title>Hotel</title>
-        <link rel="stylesheet" href="351project\static\styles.css">
+        <link rel="stylesheet" href="static\styles.css">    
+        
     </head>
     <body>
-        <section id="Home">
-            <header>
-                <div class="banner">
-                    <div class="navbar">
-                        <img src="static\logo.png" class="logo">
-                        <ul>
-                            <li><a href="#Home">Home</a></li>
-                            <li><a href="#Rooms">Rooms</a></li>
-                            <li><a href="#Events">Events</a></li>
-                            <li><a href="#ContactUs">Contact Us</a></li>
-                            <li><a href="#book">BOOK NOW!</a></li>
-                        </ul>   
-                    </div>
-                    
-                    <div class="content">
-                        <h1>Welcome to our Hotel</h1>
-                        <p>Hope you enjoy your stay with us!</p>
-                        <div>
-                            
-                        </div>    
+      <section id="Home">
+        <header>
+            <div class="banner">
+                <div class="navbar">
+                    <img src="static\logo.png" class="logo">
+                    <ul>
+                        <li><a href="#Home">Home</a></li>
+                        <li><a href="#Rooms">Rooms</a></li>
+                        <li><a href="#book">BOOK NOW!</a></li>
+                        <li><a href="#Profile">Profile</a></li>
+                    </ul>   
                 </div>
-            </header>
-        </section>
+                
+                <div class="content">
+                    <h1>Welcome to our Hotel</h1>
+                    <p>Hope you enjoy your stay with us!</p>
+                    {% if user.is_authenticated %}
+                <p>Log out <a href="/logout">Here</a></p>
+            {% else %}
+                <p>Log in <a href="/login">Here</a></p>
+            {% endif %}
+                    <div>
+                        
+                    </div>    
+            </div>
+        </header>
+    </section>
         <section class="offer mtop" id="Rooms">
-            <link rel="stylesheet" href="static\book.css">
+          <link rel="stylesheet" href="static\books.css">
             <div class="cont">
                 <div class="heading">
                   <h5>EXCLUSIVE OFFERS </h5>
@@ -53,6 +60,7 @@
                       </div>
                       <p> Description.</p>
                       <h5>Cost/Night</h5>
+                      
                       <button class="flex1">
                         <span>Check Availability</span>
                         <i class="fas fa-arrow-circle-right"></i>
@@ -80,53 +88,10 @@
                       </button>
                     </div>
                   </div>
-                  <div class="box flex">
-                    <div class="left">
-                      <img src="static/room3.jpeg" alt="">
-                    </div>
-                    <div class="right">
-                      <h4>Deluxe Room</h4>
-                      <div class="rate flex">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                      </div>
-                      <p> Description.</p>
-                      <h5>Cost/Night</h5>
-                      <button class="flex1">
-                        <span>Check Availability</span>
-                        <i class="fas fa-arrow-circle-right"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="box flex">
-                    <div class="left">
-                      <img src="static/room4.jpeg" alt="">
-                    </div>
-                    <div class="right">
-                      <h4>Deluxe Room</h4>
-                      <div class="rate flex">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                      </div>
-                      <p> Description.</p>
-                      <h5>Cost/Night</h5>
-                      <button class="flex1">
-                        <span>Check Availability</span>
-                        <i class="fas fa-arrow-circle-right"></i>
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
           </section>
-        <section id="Events"></section>
-        <section id="ContactUs"></section>
+        
         <section id="book">
             <head>
                 <meta charset="UTF-8">
@@ -161,7 +126,6 @@
                                         <option value="">Number of guests</option>
                                         <option value="">1-2</option>
                                         <option value="">3-6</option>
-                                        <option value="">7-10</option>
                                     </select>
                                 </div> 
                             </div>
@@ -184,9 +148,7 @@
                                     <select id="input-group" style="background-color: black;">
                                         <option value="">Room Type</option>
                                         <option value="">Smoking/Single Bed</option>
-                                        <option value="">Smoking/Double Bed</option>
-                                        <option value="">Non-Smoking/Single Bed</option>
-                                        <option value="">Non-Smoking/Double Bed</option>
+                                        <option value="">Non-smoking</option>
                                     </select>
                                 </div> 
                             </div>
@@ -197,3 +159,18 @@
                     </form>
             </body>
         </section>
+        <section id="Profile">
+          <link rel="stylesheet" href="static\style.css">
+          <body>
+            <div class="hero">
+              <nav>
+                <img src="static/user.png" class="logo">
+                <ul>
+                  <li>
+                </ul>
+                <img src="static/user.png" class="user-pic">
+              </nav>
+            </div>
+          </body>
+        </section>
+        
