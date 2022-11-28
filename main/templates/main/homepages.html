@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-      
         <meta charset="UTF-8">
         <title>Hotel</title>
-        <link rel="stylesheet" href="static\styles.css">    
-        
+        <link rel="stylesheet" href="static\styles.css">
     </head>
     <body>
       <section id="Home">
         <header>
             <div class="banner">
                 <div class="navbar">
-                    <img src="static\logo.png" class="logo">
+                    <img src="static\logo123.png" class="logo">
                     <ul>
                         <li><a href="#Home">Home</a></li>
                         <li><a href="#Rooms">Rooms</a></li>
                         <li><a href="#book">BOOK NOW!</a></li>
-                        <li><a href="#Profile">Profile</a></li>
+                        <li>{% if user.is_authenticated %}
+                <a href="#Profile">Profile</a></p>
+            {% else %}
+                <a href="/login">Profile</a></p>
+            {% endif %}</li>
                     </ul>   
                 </div>
                 
                 <div class="content">
-                    <h1>Welcome to our Hotel</h1>
-                    <p>Hope you enjoy your stay with us!</p>
+                    <h1>Welcome to i-Mann Hotel</h1>
+                    <h2>Hope you enjoy your stay with us!</h2>
                     {% if user.is_authenticated %}
                 <p>Log out <a href="/logout">Here</a></p>
             {% else %}
@@ -37,7 +38,7 @@
         </header>
     </section>
         <section class="offer mtop" id="Rooms">
-          <link rel="stylesheet" href="static\books.css">
+            <link rel="stylesheet" href="static\book.css">
             <div class="cont">
                 <div class="heading">
                   <h5>EXCLUSIVE OFFERS </h5>
@@ -60,8 +61,7 @@
                       </div>
                       <p> Description.</p>
                       <h5>Cost/Night</h5>
-                      
-                      <button class="flex1"><a href="/reservation"> 
+                      <button class="flex1"> <a href="/availability"> 
                         <span>Check Availability</span></a>
                         <i class="fas fa-arrow-circle-right"></i>
                       </button>
@@ -82,7 +82,7 @@
                       </div>
                       <p> Description.</p>
                       <h5>Cost/Night</h5>
-                      <button class="flex1"><a href="/reservation"> 
+                      <button class="flex1"><a href="/availability"> 
                         <span>Check Availability</span></a>
                         <i class="fas fa-arrow-circle-right"></i>
                       </button>
@@ -91,6 +91,7 @@
                 </div>
               </div>
           </section>
+        
         <section id="book">
             <head>
                 <meta charset="UTF-8">
@@ -102,10 +103,11 @@
             </head>
             <body>
                 <div class="container">
-                    <form class="form-group">
+                    <form method = "POST" , id = "roomRes", action = "checkOut/">
                         <div id="form">
+                            
                             <h1 class="text-white text-center">Book Now</h1>
-            
+                            
                             <div id="first-group">
                                 <div id="content">
                                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -117,7 +119,7 @@
                                 </div>
                                 <div id="content">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                                    <input type="text" id= "input-group" placeholder="Arrival Date mm/dd/yyyy">
+                                    <input type="date" id= "start_date" placeholder="Arrival Date mm/dd/yyyy">
                                 </div>   
                                 <div id="content">
                                     <i class="fa fa-users" aria-hidden="true"></i>
@@ -140,7 +142,7 @@
                                 </div> 
                                 <div id="content">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                                    <input type="text" id= "input-group" placeholder="Departure Date  mm/dd/yyyy">
+                                    <input type="date" id= "end_date" placeholder="Departure Date  mm/dd/yyyy">
                                 </div> 
                                 <div id="content">
                                     <i class="fa fa-users" aria-hidden="true"></i>
@@ -159,17 +161,33 @@
             </body>
         </section>
         <section id="Profile">
-          <link rel="stylesheet" href="static\style.css">
+          <link rel="stylesheet" href="static\styles.css">
           <body>
-            <div class="hero">
-              <nav>
-                <img src="static/user.png" class="logo">
-                <ul>
-                  <li>
-                </ul>
-                <img src="static/user.png" class="user-pic">
-              </nav>
-            </div>
+            <div class="rounded bg-white mt-5 mb-5">
+              <div class="row">
+                  <div class="col-md-3 border-right">
+                      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="static/user.png"><span class="font-weight-bold">{{first_name}} {{last_name}}</span><span class="text-black-50"></span><span> </span></div>
+                  </div>
+                  <div class="col-md-5 border-right">
+                      <div class="p-3 py-5">
+                          <div class="d-flex justify-content-between align-items-center mb-3">
+                              <h4 class="text-right">Profile</h4>
+                          </div>
+                          <div class="row mt-2">
+                              <div class="col-md-6"><label class="labels">Name: {{first_name}}</label></div>
+                              <div class="col-md-6"><label class="labels">Surname: {{last_name}}</label></div>
+                          </div>
+                          <div class="row mt-3">
+                              <div class="col-md-12"><label class="labels">UserName: {{username}}</label></div>
+                              <div class="col-md-12"><label class="labels">Email ID: {{email}}</label></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </div>
+          </div>
+          <button>Check History</button>
           </body>
         </section>
         
