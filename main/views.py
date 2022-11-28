@@ -44,17 +44,57 @@ def confirmationPage(response, start_date, end_date):
 
 def profile(response):
     currentUser = response.user
+    if(users.objects.filter(django_id = currentUser).exists()):
+        exists = True
+        ourTableUser = users.objects.get(django_id = currentUser)
+        #ourTableUserList = users.objects.filter(django_id = currentUser)
+        #for()
+    else:
+        ourTableUser = users(first_name = "UNKNOWN", last_name = "UNKNOWN", django_id = currentUser)
+        ourTableUser.save()
+        #exists = False
+        exists = True
+    
+    D = {}
+    #D["username"] = currentUser.username
+    #D["djangoID"] = currentUser.id
+    D["username"] = currentUser.username
+    if(exists):
+        D["firstName"] = ourTableUser.first_name
+        D["lastName"] = ourTableUser.last_name
+        D["hotelID"] = ourTableUser.id
+    else:
+        D["firstName"] = "No First Name Given"
+        D["lastName"] = "No Last Name Given"
+        D["hotelID"] = -1
     #ls = reservation.objects.filter(client_id = django.contrib.auth.get_user_model())
     ls = reservation.objects.filter(client_id = currentUser.id)
-    D = {}
+
+    D[ls] = ls
+
+    #D = {}
     #i = 1
-    i = 0
+    #i = 0
     #TODO PASS ROOM ID IN DICTIONARY, figure out how to separate them in the for loop
     #SET THE KEY AS THE ROOM NUMBER AND SET THE VALUE AS A PAIR OF START AND END DATE
     # https://docs.djangoproject.com/en/4.1/ref/templates/builtins/
     #TODO in the profile, find a way to 
-    for res in ls:
-        D[i] = res
-        i+=1
+    # for res in ls:
+    #     x = room.objects.get(id = res.room_id)
+    #     D[x.room_number] = res
+        #i+=1
     #D[0] = i
-    return render(response, "main/profile.html", {"ls": ls})
+    # D[0] = currentUser.first_name
+    # D[1] = currentUser.last_name
+    #return render(response, "main/profile.html", {"firstName": currentUser.first_name, "lastName": currentUser.last_name, "ls": ls})
+    #return render(response, "main/profile.html", {"username": currentUser.username, "firstName": ourTableUser.first_name, "lastName": ourTableUser.last_name, "ls": ls})
+    return render(response, "main/profile.html", D)
+
+def modifyInfo(response, id):
+    D = {}
+    if response.method == "POST":
+        form = personalForm(response.POST)
+        if(form.is_valid()):
+            #x = users(first_name = form.firstName, last_name = form.lastName, djangoID = response.user.id)
+            #x.save()
+            x = users.get

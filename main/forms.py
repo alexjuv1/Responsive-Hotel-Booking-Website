@@ -13,3 +13,7 @@ class DateInput(forms.DateInput):
 class reservationTimes(forms.Form):
     start_date = forms.DateField(widget = DateInput, label = "start_date")
     end_date = forms.DateField(widget= DateInput , label = "end_date")
+
+class personalForm(forms.Form):
+    firstName = forms.CharField(label = "First Name", max_length = 100)
+    lastName = forms.CharField(label = "Last Name", max_length = 100)
