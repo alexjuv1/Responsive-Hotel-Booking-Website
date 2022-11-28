@@ -1,4 +1,5 @@
 {% extends "main\base.html" %}
+{% include }
 <title>
     {% block title %}
     User Profile
@@ -9,7 +10,9 @@
 <h1> Profile Page </h1>
 {% if user.is_authenticated %}
         <h2>Personal Information:</h2>
-            <p>NAME: </p>
+            <p>USERNAME: {{username}}</p>
+            <p>FIRST NAME: {{firstName}}</p>
+            <p>LAST NAME: {{lastName}}</p>
         <h2>Your Previous Reservations:</h2>
         {% for room in ls %}
             <li>{{ room.room_id }} from {{ room.start_date }} till {{ room.end_date}} </li>
