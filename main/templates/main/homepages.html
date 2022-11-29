@@ -146,6 +146,7 @@
                     </form>
             </body>
         </section>
+        {% if user.is_authenticated %}
         <section id="Profile">
           <link rel="stylesheet" href="static\styles.css">
           <body>
@@ -166,6 +167,9 @@
                           <div class="row mt-3">
                               <div class="col-md-12"><label class="labels">UserName: {{username}}</label></div>
                               <div class="col-md-12"><label class="labels">Email ID: {{email}}</label></div>
+                              <div class = "col-md-12"><label class = "labels">History of Bookings: </label></div>
+                              <br>
+                              
                           </div>
                       </div>
                   </div>
@@ -173,7 +177,7 @@
           </div>
           </div>
           </div>
-          <button>Check History</button>
           </body>
         </section>
+        {% endif %}
         
