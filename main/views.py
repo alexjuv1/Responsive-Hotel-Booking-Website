@@ -6,6 +6,11 @@ from .forms import roomForm
 from .forms import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+import datetime
+from django.db.models import F
+
+#def verifyAccount():
+
 #from .forms import RegisterForm
 # Create your views here.
 
@@ -54,7 +59,7 @@ def confirmationPage(response, start_date, end_date):
     return render(response, "main/confirmationPage.html")
 
 def profile(response):
-    currentUser = response.user
+    currentUser = response.user 
     if(users.objects.filter(django_id = currentUser).exists()):
         exists = True
         ourTableUser = users.objects.get(django_id = currentUser)
@@ -109,3 +114,68 @@ def modifyInfo(response, id):
             #x = users(first_name = form.firstName, last_name = form.lastName, djangoID = response.user.id)
             #x.save()
             x = users.get
+def viewProfile(response):
+    D = {}
+    currentUser = response.User
+    if(users.objects.filter(username = currentUser.username).exists()):
+        ourDB = users.objects.get(username = currentUser.username)
+    else:
+        ourDB = users(first_name = "UNKNOWN", last_name = "UNKNOWN", username = currentUser.username)
+    D["username"] = ourDB.username
+    D["first_name"] = ourDB.first_name
+    D["last_name"] = ourDB.last_name
+    D["email"] = currentUser.email
+    return render(response, "", D)
+
+def reservationFunction(response):
+    D = {}
+    #if response is post / form was submitted
+    L = [] * 100
+    if response.method == "POST":
+        form = reservationForm(response.POST)
+        #check that the form is valid (all inputs are valid)
+        #if form.is_valid():
+            #get start time, end time, smoking, and single info from form
+        startTime = response.POST.get("start_date")
+        endTime = response.POST.get("end_date")
+        smoking = response.POST.get("Smoking")
+        single = response.POST.get("Single")
+        if (single == "True" and smoking == "True"):
+            ls = room.objects.filter(smoking = True, single = True)
+        elif (single == "True" and smoking == "False"):
+            ls = room.objects.filter(smoking = True, single = False)
+        elif (single == "False" and smoking == "True"):
+            ls = room.objects.filter(smoking = False, single = True)
+        else:
+            ls = room.objects.filter(smoking = False, single = False)
+
+
+            #filter all the rooms that match the requirements (apart from reservation dates)
+        
+
+        i = 0
+
+            #for each room, check if reservation date coincides with an existing reservation
+        for x in ls:
+                #q = reservation.objects.filter(room_id = x.id).filter(end_time__gte=startTime).exclude(end_time__gte=endTime)
+                #starts before end time, and ends after start time = collision
+            q = reservation.objects.filter(room_id = x.id).filter(end_date1__gte=startTime).exclude(start_date1__gte=endTime)
+                #available = True
+            if not q:
+                    # L[i] = x
+                    # i+=1
+                    #if no collisions,
+                D[x.room_number] = x
+            return render(response, "main/reservationPage.html", {"ls": D})
+        return render(response, "main/reservationPage.html", {"ls": ls})
+        # else:
+        #     return render(response, "main/selectRoomTemp.html", {})
+    #else:
+        #return render(response, "main/selectRoomTemp.html", {})
+
+
+def selectRoomTemp(response):
+    return render(response, "main/selectRoomTemp.html", {})
+def history(response):
+    D = {}
+    ls = reservation.objects.get()
