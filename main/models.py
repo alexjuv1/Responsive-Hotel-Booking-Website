@@ -55,6 +55,6 @@ class testmod(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="tmod", null=True)
     test1 = models.CharField(max_length=200, default="NONE")
     def __str__(self):
-        return(this.name1)
+        return(self.test1)
     
 
