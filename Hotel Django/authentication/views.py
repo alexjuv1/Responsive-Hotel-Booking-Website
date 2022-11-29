@@ -82,7 +82,7 @@ def signup(request):
         return redirect('signin')
 
 
-    return render(request, "authentication/signup.html")
+    return render(request, "authentication/signup.html",)
 
 def signin(request):
     
@@ -124,3 +124,6 @@ def homepage(request):
 
 def book(request):
     return render(request,"authentication/book.html")
+
+def availability(request):
+    return render(request, "authentication/availability.html")

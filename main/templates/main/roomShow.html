@@ -6,6 +6,7 @@ Available rooms
 {% block content %}
 <h1>Available Rooms</h1>
 
+    
 {% for room in rooms %}
     {% if smoking == "True" and room.smoking%}
     {% if single == "True" and room.single%}

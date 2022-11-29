@@ -5,6 +5,7 @@ from .models import *
 from .forms import roomForm
 from .forms import *
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 import datetime
 from django.db.models import F
 
@@ -20,7 +21,17 @@ def index(response, id):
     return render(response, "main/viewRoom.html", {"ls": ls})
 
 def home(response):
-    return render(response, "main/homepages.html", {})
+    D = {}
+    currentUser = response.user
+    if currentUser.is_authenticated:
+        D["username"] = response.user.username
+        D["first_name"] = response.user.first_name
+        D["last_name"] = response.user.last_name
+        D["email"] = response.user.email
+        return render(response, "main/homepages.html", D)
+    else:
+        return render(response, "main/homepages.html", D)
+    
 
 def roomShow(response):
     smoking = response.POST.get('Smoking', False)

@@ -97,6 +97,23 @@ section{
     margin-left: 8px;
     padding: 5px;
 }
+#content #single {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left:8px;
+    width: 300px;
+    color: white;
+}
+
+#content #smoking{
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left:8px;
+    width: 300px;
+    color: white;
+}
 #content #input-group{
     border: none;
     outline: none;
@@ -105,6 +122,8 @@ section{
     width: 300px;
     color: white;
 }
+
+
 ::placeholder{
     color: white;
 }
