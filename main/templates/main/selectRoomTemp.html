@@ -1,16 +1,23 @@
 {% extends 'main/base.html' %}
 {% block title %}
-Room
+
 {% endblock %}
 
 {% block content %}
-<form method = "post", action ="reservations/", id = "reservation_form">
+<form method = "post", action ="reservations/", id = "reservationForm">
     {% csrf_token %}
-    <input id = "start_date" name = "start_date" type = "datetime-local" value = "datetime-local">
-    <input id = "end_date" name = "end_date" type = "datetime-local" value = "datetime-local">
-    <input id = "smoking" name = "smoking" type = "checkbox" value = "false">
-    <input id = "single" name = "single" type = "checkbox" value = "false">
-    <button class="button button1", type="submit", name = "book", form = "reservation_form"> Book now! </button>
+    <input id = "start_date" name = "start_date" type = "date" value = "start_date">
+    <input id = "end_date" name = "end_date" type = "date" value = "end_date">
+    <select name="Single" id="Single">
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+      
+      </select>
+      <select name="Smoking" id="Smoking">
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+      </select>
+    <button class="button button1", type="submit", name = "book", form = "reservationForm"> Book now! </button>
 </form>
 
 {% endblock %} 

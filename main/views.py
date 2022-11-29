@@ -123,35 +123,44 @@ def reservationFunction(response):
     if response.method == "POST":
         form = reservationForm(response.POST)
         #check that the form is valid (all inputs are valid)
-        if form.is_valid():
+        #if form.is_valid():
             #get start time, end time, smoking, and single info from form
-            startTime = form.cleaned_data["start_date"]
-            endTime = form.cleaned_data["end_date"]
-            isSmoking = form.cleaned_data["smoking"]
-            isSingle = form.cleaned_data["single"]
+        startTime = response.POST.get("start_date")
+        endTime = response.POST.get("end_date")
+        smoking = response.POST.get("Smoking")
+        single = response.POST.get("Single")
+        if (single == "True" and smoking == "True"):
+            ls = room.objects.filter(smoking = True, single = True)
+        elif (single == "True" and smoking == "False"):
+            ls = room.objects.filter(smoking = True, single = False)
+        elif (single == "False" and smoking == "True"):
+            ls = room.objects.filter(smoking = False, single = True)
+        else:
+            ls = room.objects.filter(smoking = False, single = False)
+
 
             #filter all the rooms that match the requirements (apart from reservation dates)
-            ls = room.objects.filter(smoking = isSmoking, single = isSingle)
+        
 
-            i = 0
+        i = 0
 
             #for each room, check if reservation date coincides with an existing reservation
-            for x in ls:
+        for x in ls:
                 #q = reservation.objects.filter(room_id = x.id).filter(end_time__gte=startTime).exclude(end_time__gte=endTime)
                 #starts before end time, and ends after start time = collision
-                q = reservation.objects.filter(room_id = x.room_number).filter(end_time__gte=startTime).exclude(start_time__gte=endTime)
+            q = reservation.objects.filter(room_id = x.id).filter(end_date1__gte=startTime).exclude(start_date1__gte=endTime)
                 #available = True
-                if not q:
+            if not q:
                     # L[i] = x
                     # i+=1
                     #if no collisions,
-                    D[x.room_number] = x
-            # return render(response, "main/reservationPage.html", {"D": ls})
-            return render(response, "main/reservationPage.html", D)
-        else:
-            return render(response, "main/reservationPage.html", D)
-    else:
-        return render(response, "main/reservationPage.html", D)
+                D[x.room_number] = x
+            return render(response, "main/reservationPage.html", {"ls": D})
+        return render(response, "main/reservationPage.html", {"ls": ls})
+        # else:
+        #     return render(response, "main/selectRoomTemp.html", {})
+    #else:
+        #return render(response, "main/selectRoomTemp.html", {})
 
 
 def selectRoomTemp(response):

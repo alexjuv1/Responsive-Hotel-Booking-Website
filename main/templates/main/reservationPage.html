@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-{% for i in D %}
+{% for i in ls %}
+<h1>{{i.room_number}}</h1>
+
+<form method = "post", action ="reservations/", id = "reservationForm">
+    {% csrf_token %}
+    <input id = "start_date" name = "start_date" type = "date" value = "start_date">
+    <input id = "end_date" name = "end_date" type = "date" value = "end_date">
+    <select name="Single" id="Single">
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+      
+      </select>
+      <select name="Smoking" id="Smoking">
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+      </select>
+    <button class="button button1", type="submit", name = "book", form = "reservationForm"> Book now! </button>
+</form>
+
 <table class="table table-bordered">
     <tr>
         <td>
-            <br /> {{i.room_number}}<span></span>
-            <br /> {{i.price_per_night}}<span></span>
-            <br /> room.Title<span></span>
-            <br /> room.Room Number<span></span>
-            <br /> room.Room Cost <span></span>
-            <br />  room.Type <span></span>
+            <br /> Smoking: {{i.smoking}}<span></span>
+            <br /> Single: {{i.single}}<span></span>
+            <br /> Price per night: {{i.price_per_night}} <span></span>
+            <br />  Rating: {{i.stars}} stars <span></span>
         </td>
-
         <td>
             <a href="#"><input type="submit" class="btn btn-primary" value="Book Now"/></a>
         </td>

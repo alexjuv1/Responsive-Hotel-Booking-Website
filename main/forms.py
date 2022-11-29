@@ -21,5 +21,9 @@ class personalForm(forms.Form):
 class reservationForm(forms.Form):
     start_date = forms.DateField(widget = DateInput, label = "start_date")
     end_date = forms.DateField(widget = DateInput, label = "end_date")
-    smoking = forms.BooleanField(label = "smoking")
-    single = forms.BooleanField(label = "single")
+    smoking = forms.BooleanField(label = "smoking", initial=False)
+    single = forms.BooleanField(label = "single", initial=False)
+
+class reservationDateHidden(forms.Form):
+    start_date = forms.DateField(widget = DateInput, label = "start_date")
+    end_date = forms.DateField(widget = DateInput, label = "end_date")
