@@ -29,20 +29,16 @@ class users(models.Model):
     def __str__(self):
         return (self.first_name + " " + self.last_name)
 
-class admin(models.Model):
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length = 255)
-    def __str__(self):
-        return (self.email)
 
-class history(models.Model):
-    room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
-    client_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    days_spent = models.IntegerField()
-    total_price = models.IntegerField()
-    review = models.TextField(default = "NONE")
-    def __str__(self):
-        return(self.room_id + " " + self.client_id)
+
+# class history(models.Model):
+#     room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
+#     client_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+#     days_spent = models.IntegerField()
+#     total_price = models.IntegerField()
+#     review = models.TextField(default = "NONE")
+#     def __str__(self):
+#         return(self.room_id + " " + self.client_id)
 
 class reservation(models.Model):
     room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
@@ -50,12 +46,4 @@ class reservation(models.Model):
     start_date1 = models.DateField()
     end_date1 = models.DateField()
     def __str__(self):
-        return(self.room_id + " " + self.client_id)
-
-class testmod(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="tmod", null=True)
-    test1 = models.CharField(max_length=200, default="NONE")
-    def __str__(self):
-        return(this.name1)
-    
-
+        return(self.room_id)

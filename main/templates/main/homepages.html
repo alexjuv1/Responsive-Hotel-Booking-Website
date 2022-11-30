@@ -180,8 +180,8 @@
                               <div class="col-md-12"><label class="labels">UserName: {{user.username}}</label></div>
                               <div class="col-md-12"><label class="labels">Email ID: {{user.email}}</label></div>
                               <div class = "col-md-12"><label class = "labels">History of Bookings: </label></div>
-                              {% for booking in user.history_set.all%}
-                               - {{booking.room_id}} <br> {{booking.days_spent}} days spent <br> Review was: "{{booking.review}}" <br><br>
+                              {% for booking in user.reservation_set.all%}
+                               - {{booking.room_id}} <br> Check-in: {{booking.start_date1}} <br> Check-out: {{booking.end_date1}}<br>
                               {% endfor %}
                           </div>
                           <br>
