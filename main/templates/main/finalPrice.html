@@ -1,0 +1,17 @@
+<title>Invoice</title>
+<h1>Reservation for {{room.room_number}}</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <td>
+            <br /> Smoking: {{room.smoking}}<span></span>
+            <br /> Single: {{room.single}}<span></span>
+            <br /> Price per night: {{room.price_per_night}} <span></span>
+            <br /> Total Price: {{total_price}} <span></span>
+            <br />  Rating: {{room.stars}} stars <span></span>
+        </td>
+        <td>
+            <a href="/reservations/book/{{room.id}}/{{start}}/{{end}}/"><input type="submit" class="btn btn-primary" value="Confirm"/></a>
+        </td>
+    </tr>
+</table>

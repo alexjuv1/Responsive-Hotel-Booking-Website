@@ -1,0 +1,10 @@
+<h1>select the date for the requested room</h1>
+<form method = "post", action ="{{room_id}}/confirm/", id = "reserveRoomDateOnly">
+    {% csrf_token %}
+    <p>Start Date (first day of the reservation)</p>
+    <input id = "start_date" name = "start_date" type = "date" value = "start_date">
+    <p>End Date (last day of the reservation)</p>
+    <input id = "end_date" name = "end_date" type = "date" value = "end_date">
+
+    <button class="button button1", type="submit", name = "book", form = "reserveRoomDateOnly"> Book now! </button>
+</form>
