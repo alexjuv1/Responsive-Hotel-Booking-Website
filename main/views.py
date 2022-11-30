@@ -195,6 +195,8 @@ def isRoomValid(roomID, startDate, endDate):
     return True
 
 def selectDateOnly(response, id):
+    if not response.user.is_authenticated:
+        return redirect("/login")
     return render(response, "main/selectDate.html", {"room_id": id})
 
 def calculatePrice(response, id):
