@@ -27,6 +27,7 @@
                     <h1>Welcome to i-Mann Hotel</h1>
                     <h2>Hope you enjoy your stay with us!</h2>
                     {% if user.is_authenticated %}
+                    <h3 style="text-color"="white">Hi {{user.first_name}}!</h3>
                 <p>Log out <a href="/logout">Here</a></p>
             {% else %}
                 <p>Log in <a href="/login">Here</a></p>
@@ -172,20 +173,23 @@
                               <h4 class="text-right">Profile</h4>
                           </div>
                           <div class="row mt-2">
-                              <div class="col-md-6"><label class="labels">Name: {{first_name}}</label></div>
-                              <div class="col-md-6"><label class="labels">Surname: {{last_name}}</label></div>
+                              <div class="col-md-6"><label class="labels">Name: {{user.first_name}}</label></div>
+                              <div class="col-md-6"><label class="labels">Surname: {{user.last_name}}</label></div>
                           </div>
                           <div class="row mt-3">
-                              <div class="col-md-12"><label class="labels">UserName: {{username}}</label></div>
-                              <div class="col-md-12"><label class="labels">Email ID: {{email}}</label></div>
+                              <div class="col-md-12"><label class="labels">UserName: {{user.username}}</label></div>
+                              <div class="col-md-12"><label class="labels">Email ID: {{user.email}}</label></div>
                               <div class = "col-md-12"><label class = "labels">History of Bookings: </label></div>
                               {% for booking in user.history_set.all%}
                                - {{booking.room_id}} <br> {{booking.days_spent}} days spent <br> Review was: "{{booking.review}}" <br><br>
                               {% endfor %}
-                              
                           </div>
                           <br>
-                          <button> Edit profile </button>
+                          <form method = "post" id="usernamePass" action = "editprofile/">
+                            {% csrf_token %}
+                            <input type = "hidden", value={{user.username}},name = "username", id = "username">
+                            <button value = {{user.username}}, id = "user"> Edit profile </button>
+                          </form>
                       </div>
                   </div>
               </div>
