@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-{% for i in ls %}
-<h1>{{i.room_number}}</h1>
+{% for i in D %}
+<h1>Room {{i.room_number}}</h1>
 
 <form method = "post", action ="reservations/", id = "reservationForm">
     {% csrf_token %}

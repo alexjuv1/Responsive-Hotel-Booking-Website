@@ -103,7 +103,8 @@
             </head>
             <body>
                 <div class="container">
-                    <form method = "POST" , id = "roomRes", action = "checkOut/">
+                    <form method = "POST" , id = "reservationForm", action = "reservations/">
+                      {% csrf_token %}
                         <div id="form">
                             <br>
                             <br>
@@ -114,13 +115,13 @@
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                     <text style = "color:white"> Check-in date </text>
                                     <input type="date" id= "start_date" placeholder="Arrival Date mm/dd/yyyy">
-                                </div>   
+                                </div>
                                 <div id="content">
                                     <i class="fa fa-exclamation" aria-hidden="true"></i>
                                     <select id="smoking">
-                                        <option value="">Smoking</option>
-                                        <option value="">Yes</option>
-                                        <option value="">No</option>
+                                        <option value="NULL">Smoking</option>
+                                        <option value="True">Yes</option>
+                                        <option value="False">No</option>
                                     </select>
                                 </div> 
                             </div>

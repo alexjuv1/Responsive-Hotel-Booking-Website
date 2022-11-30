@@ -6,7 +6,8 @@ from .forms import roomForm
 from .forms import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-import datetime
+#import datetime
+from datetime import *
 from django.db.models import F
 
 #def verifyAccount():
@@ -159,23 +160,75 @@ def reservationFunction(response):
         for x in ls:
                 #q = reservation.objects.filter(room_id = x.id).filter(end_time__gte=startTime).exclude(end_time__gte=endTime)
                 #starts before end time, and ends after start time = collision
-            q = reservation.objects.filter(room_id = x.id).filter(end_date1__gte=startTime).exclude(start_date1__gte=endTime)
+            q = reservation.objects.filter(room_number = x.room_number)
+            #, end_date1__gte=startTime)
+            #.exclude(start_date1__gte=endTime)
                 #available = True
             if not q:
                     # L[i] = x
                     # i+=1
                     #if no collisions,
                 D[x.room_number] = x
-            return render(response, "main/reservationPage.html", {"ls": D})
+        #return render(response, "main/reservationPage.html", {"ls": D})
+        return render(response, "main/reservationPage.html", {"ls": D})
         return render(response, "main/reservationPage.html", {"ls": ls})
         # else:
         #     return render(response, "main/selectRoomTemp.html", {})
     #else:
         #return render(response, "main/selectRoomTemp.html", {})
 
+def isRoomValid(roomID, startDate, endDate):
+    q = reservation.objects.filter(room_id = roomID)
+    for x in q:
+        if(x.start_date1 <= startDate):
+            if(x.end_date1 > startDate):
+                return False
+        elif(x.start_date1 <= endDate):
+            return False
+    return True
+
+    return
+def reservationFunction2(response):
+    D = {}
+    #if response is post / form was submitted
+    L = [] * 100
+    if response.method == "POST":
+        # i = 0
+        form = reservationForm(response.POST)
+        #check that the form is valid (all inputs are valid)
+        #if form.is_valid():
+            #get start time, end time, smoking, and single info from form
+        startTime = response.POST.get("start_date")
+        endTime = response.POST.get("end_date")
+        smoking = response.POST.get("Smoking")
+        single = response.POST.get("Single")
+        if (single == "True" and smoking == "True"):
+            ls = room.objects.filter(smoking = True, single = True)
+        elif (single == "True" and smoking == "False"):
+            ls = room.objects.filter(smoking = True, single = False)
+        elif (single == "False" and smoking == "True"):
+            ls = room.objects.filter(smoking = False, single = True)
+        else:
+            ls = room.objects.filter(smoking = False, single = False)
+        
+        for x in ls:
+            if(isRoomValid(x.id, startTime, endTime)):
+                # L[i] = x
+                #D[x.room_number] = x
+                D[x] = x.room_number
+                # i+=1
+        return render(response, "main/reservationPage.html", {"D": D})
+        
 
 def selectRoomTemp(response):
     return render(response, "main/selectRoomTemp.html", {})
+
+def bookRoomFinal(response):
+    if(response.method == "POST"):
+        startTime = response.POST.get("start_date")
+        endTime = response.POST.get("end_date")
+
+        #TODO add to reservation table
 def history(response):
     D = {}
     ls = reservation.objects.get()
