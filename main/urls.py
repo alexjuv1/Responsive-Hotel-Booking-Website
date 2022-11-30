@@ -21,7 +21,7 @@ urlpatterns = [
     #path("reservations/book/", views.bookRoomFinal,
     path("selectRoom/reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal, name = "booking"),
     path("selectRoomTemp/", views.selectRoomTemp, name = "selectRoomLOL"),
-    path("reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal,
+    path("reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal, name = "booking"),
     path("selectDate/<int:id>/confirm/", views.calculatePrice, name = "Confirm Order"),
     path("selectDate/<int:id>", views.selectDateOnly, name = "Select Date"),
     path("reservations/invoice/<int:id>/<int:start>/<int:end>", views.calculateInvoice, name = "Invoice")
