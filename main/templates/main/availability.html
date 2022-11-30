@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hotel</title>
+        <link rel="stylesheet" href="C:\Users\Alex\Documents\GitHub\351project\main\static\styles.css">
+    </head>
+    <body>
+      <section id="Home">
+        <header>
+            <div class="banner">
+                <div class="navbar">
+                    <img src="static\logo123.png" class="logo">
+                    <ul>
+                        <li><a href="/#Home">Home</a></li>
+                        <li><a href="/#Rooms">Rooms</a></li>
+                        <li><a href="/#book">BOOK NOW!</a></li>
+                        <li>{% if user.is_authenticated %}
+                <a href="/#Profile">Profile</a></p>
+            {% else %}
+                <a href="/login">Profile</a></p>
+            {% endif %}</li>
+                    </ul>   
+                </div>
+                
+                <div class="content">
+                    <h1>i-Mann Hotel</h1>
+                    <h2>Reservation page</h2>
+                    <div>
+                        
+                    </div>    
+            </div>
+        </header>
+    </section>
+<table class="table table-bordered">
+    <tr>
+        <td>
+            
+            {% if room.reserved == True%}
+            <li>Room not available. Sorry!</li>
+            {% else %}
+            <li>Room available.</li>
+            {% endif %}
+            <li>Room number {{room.room_number}}</li>
+            <li>Price per night: ${{room.price_per_night}}</li>
+            {% if room.single == True%}
+            <li>Single bed room.</li>
+            {% else %}
+            <li>Double bed room.</li>
+            {% endif %}
+            {% if room.smoking == True%}
+            <li>Smoking is allowed in this room.</li>
+            {% else %}
+            <li>Smoking is not allowed in this room.</li>
+            {% endif %}
+            <li>Room rating: {{room.stars}}</li>
+        </td>
+
+        <br>
+        <br>
+            <a href="#"><input type="submit" class="btn btn-primary" value="Book Now"/></a>
+    </tr>
+</table>

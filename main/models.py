@@ -12,7 +12,7 @@ class room(models.Model):
     stars = models.IntegerField()
 
     def __str__(self):
-        return ("Room Number: "+str(self.room_number) +" "+ "Price per night: $" + str(self.price_per_night) + "\n" + "Single: "+ str(self.single)+ "\n" + "Smoking: "+ str(self.smoking) + "\n" + "Stars: "+ str(self.stars))
+        return ("Room Number: "+str(self.room_number))
 
 class users(models.Model):
     email = models.CharField(max_length=255, blank=True)
@@ -56,6 +56,6 @@ class testmod(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="tmod", null=True)
     test1 = models.CharField(max_length=200, default="NONE")
     def __str__(self):
-        return(self.test1)
+        return(this.name1)
     
 
