@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Hotel</title>
-        <link rel="stylesheet" href="static\styles.css">
+        <link rel="stylesheet" href="C:\Users\Alex\Documents\GitHub\351project\main\static\styles.css">
     </head>
     <body>
       <section id="Home">
@@ -31,17 +31,29 @@
                     </div>    
             </div>
         </header>
-        </head
     </section>
 <table class="table table-bordered">
     <tr>
         <td>
-            <li>Reservation status: {{room.reserved}}</li>
-            <li>{{room.room_number}}</li>
-            <li>{{room.price_per_night}}</li>
-            <li>{{room.single}}</li>
-            <li>{{room.smoking}}</li>
-            <li>{{room.stars}}</li>
+            
+            {% if room.reserved == True%}
+            <li>Room not available. Sorry!</li>
+            {% else %}
+            <li>Room available.</li>
+            {% endif %}
+            <li>Room number {{room.room_number}}</li>
+            <li>Price per night: ${{room.price_per_night}}</li>
+            {% if room.single == True%}
+            <li>Single bed room.</li>
+            {% else %}
+            <li>Double bed room.</li>
+            {% endif %}
+            {% if room.smoking == True%}
+            <li>Smoking is allowed in this room.</li>
+            {% else %}
+            <li>Smoking is not allowed in this room.</li>
+            {% endif %}
+            <li>Room rating: {{room.stars}}</li>
         </td>
 
         <br>

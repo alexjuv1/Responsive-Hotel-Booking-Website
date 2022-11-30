@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Hotel</title>
-        <link rel="stylesheet" href="static\styles.css">
+        <link rel="stylesheet" href="C:\Users\Alex\Documents\GitHub\351project\main\static\styles.css">
     </head>
     <body>
       <section id="Home">
@@ -60,11 +60,15 @@
                         <i class="fa fa-star"></i>
                       </div>
                       <p> A comfortable double bed room with an immaculate veiw of the ocean. This room is smoking.</p>
-                      <h5>$350/Night</h5>
-                      <button class="flex1"> <a href="/3/viewRoom"> 
+                      <h5>$200/Night</h5>
+                      <form method = "post", action ="/viewRoom/", id = "roomNumb">
+                        {% csrf_token %}
+                        <input type = "hidden" id = "room_numb" name = "room_numb" value = 3> 
+                      <button class="flex1"> 
                         <span>Check Availability</span></a>
-                        <i class="fas fa-arrow-circle-right"></i>
+                        <i class="fa fa-arrow-circle-right"></i>
                       </button>
+                    </form>
                     </div>
                   </div>
                   <div class="box flex">
@@ -78,14 +82,18 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
                       </div>
                       <p> Double bed room with an amazing view, connected to a kids room. This room is anti-smoking</p>
-                      <h5>$500/Night</h5>
-                      <button class="flex1"><a href="6/viewRoom"> 
+                      <h5>$300/Night</h5>
+                      <form method = "post", action ="/viewRoom/", id = "roomNumb">
+                        {% csrf_token %}
+                        <input type = "hidden" id = "room_numb" name = "room_numb" value = 4> 
+                      <button class="flex1"> 
                         <span>Check Availability</span></a>
-                        <i class="fas fa-arrow-circle-right"></i>
+                        <i class="fa fa-arrow-circle-right"></i>
                       </button>
+                    </form>
                     </div>
                   </div>
                 </div>

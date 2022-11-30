@@ -16,5 +16,5 @@ urlpatterns = [
     #path("profile/update/<int:id>", views.modifyInfo, name = "Update Profile"),
     path("selectRoom/reservations/", views.reservationFunction, name = "reservations"),
     path("selectRoom/", views.selectRoomTemp, name = "selectRoomTemp"),
-    path("<int:id>/viewRoom", views.viewRoom, name = "viewRoom")
+    path("viewRoom/", views.viewRoom, name = "viewRoom")
 ]

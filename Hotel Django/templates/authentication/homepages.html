@@ -16,6 +16,11 @@
                         <li><a href="#Rooms">Rooms</a></li>
                         <li><a href="#book">BOOK NOW!</a></li>
                         <li><a href="#Profile">Profile</a></li>
+                        <li>{% if user.is_authenticated %}
+                            <a href="/#Profile">Profile</a></p>
+                        {% else %}
+                            <a href="/login">Profile</a></p>
+                        {% endif %}</li>
                     </ul>   
                 </div>
                 
