@@ -123,12 +123,13 @@
                                 <div id="content">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                     <text style = "color:white"> Check-in date </text>
-                                    <input type="date" id= "start_date" placeholder="Arrival Date mm/dd/yyyy">
+                                    <!-- <input type="date" id= "start_date" placeholder="Arrival Date mm/dd/yyyy"> -->
+                                    <input id = "start_date" name = "start_date" type = "date" value = "start_date">
                                 </div>
                                 <div id="content">
                                     <i class="fa fa-exclamation" aria-hidden="true"></i>
-                                    <select id="smoking">
-                                        <option value="NULL">Smoking</option>
+                                    <select name="Smoking" id="Smoking">
+                                        <option value="True">Smoking</option>
                                         <option value="True">Yes</option>
                                         <option value="False">No</option>
                                     </select>
@@ -139,14 +140,15 @@
                                 <div id="content">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                     <text style = "color:white"> Check-out date </text>
-                                    <input type="date" id= "end_date" placeholder="Departure Date  mm/dd/yyyy">
+                                    <!-- <input type="date" id= "end_date" placeholder="Departure Date  mm/dd/yyyy"> -->
+                                    <input id = "end_date" name = "end_date" type = "date" value = "end_date">
                                 </div> 
                                 <div id="content">
                                     <i class="fa fa-users" aria-hidden="true"></i>
-                                    <select id="single">
-                                        <option value ="" style = "color:black">Room type</option>
-                                        <option value="single" style = "color:black">Single</option>
-                                        <option value="double" style = "color:black">Double</option>
+                                    <select name="Single" id="Single">
+                                        <option value ="True" style = "color:black">Room type</option>
+                                        <option value="True" style = "color:black">Single</option>
+                                        <option value="False" style = "color:black">Double</option>
                                     </select>
                                 </div> 
                             </div>

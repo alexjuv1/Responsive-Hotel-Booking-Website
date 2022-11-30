@@ -18,6 +18,9 @@ urlpatterns = [
     path("selectRoom/", views.selectRoomTemp, name = "selectRoomTemp"),
     path("viewRoom/", views.viewRoom, name = "viewRoom"),
     path("selectRoom/reservations/", views.reservationFunction2, name = "reservations2"),
-    path("book/", views.bookRoomFinal, name = "bookRoomFinal"),
+    #path("reservations/book/", views.bookRoomFinal,
+    path("selectRoom/reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal, name = "booking"),
+    path("selectRoomTemp/", views.selectRoomTemp, name = "selectRoomLOL"),
+    path("reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal, name = "booking"), name = "bookRoomFinal"),
     
 ]

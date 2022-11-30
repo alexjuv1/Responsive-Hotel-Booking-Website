@@ -143,8 +143,8 @@ def reservationFunction(response):
         #check that the form is valid (all inputs are valid)
         #if form.is_valid():
             #get start time, end time, smoking, and single info from form
-        startTime = response.POST.get("start_date")
-        endTime = response.POST.get("end_date")
+        startTime = datetime(response.POST.get("start_date"))
+        endTime = datetime(response.POST.get("end_date"))
         smoking = response.POST.get("Smoking")
         single = response.POST.get("Single")
         if (single == "True" and smoking == "True"):
@@ -186,10 +186,10 @@ def reservationFunction(response):
 def isRoomValid(roomID, startDate, endDate):
     q = reservation.objects.filter(room_id = roomID)
     for x in q:
-        if(x.start_date1 <= startDate):
-            if(x.end_date1 > startDate):
+        if(x.start_date1 <= datetime.date(startDate)):
+            if(x.end_date1 > datetime.date(startDate)):
                 return False
-        elif(x.start_date1 <= endDate):
+        elif(x.start_date1 <= datetime.date(endDate)):
             return False
     return True
 
@@ -204,8 +204,21 @@ def reservationFunction2(response):
         #check that the form is valid (all inputs are valid)
         #if form.is_valid():
             #get start time, end time, smoking, and single info from form
-        startTime = response.POST.get("start_date")
-        endTime = response.POST.get("end_date")
+        formDict = form.data
+        if 'start_date' in response.POST and 'end_date' in response.POST:
+            date1 = formDict['start_date']
+            print(date1)
+            date1Con = datetime.strptime(date1, "%Y-%m-%d")
+            dateFormat = date1Con.strftime('%d-%m-%Y')
+            startTime = datetime.strptime(dateFormat, "%d-%m-%Y")
+
+            date2 = formDict["end_date"]
+            date2Con = datetime.strptime(date2, "%Y-%m-%d")
+            date2Format = date2Con.strftime('%d-%m-%Y')
+            endTime = datetime.strptime(date2Format, "%d-%m-%Y")
+
+        #startTime = response.POST.get("start_date")
+        #endTime = response.POST.get("end_date")
         smoking = response.POST.get("Smoking")
         single = response.POST.get("Single")
         if (single == "True" and smoking == "True"):
@@ -217,26 +230,59 @@ def reservationFunction2(response):
         else:
             ls = room.objects.filter(smoking = False, single = False)
         
+        if(startTime > endTime or datetime.date(startTime) < date.today()):
+            return render(response, "main/invalidDateInputs.html", {})
         for x in ls:
             if(isRoomValid(x.id, startTime, endTime)):
                 # L[i] = x
                 #D[x.room_number] = x
                 D[x] = x.room_number
                 # i+=1
-        return render(response, "main/reservationPage.html", {"D": D})
+        start = (((startTime.year * 100) + startTime.month) * 100 + startTime.day)
+        end = (((endTime.year * 100) + endTime.month) * 100 + endTime.day)
+        
+        return render(response, "main/reservationPage.html", {"start": start, "end": end, "D": D})
         
 
 def selectRoomTemp(response):
     return render(response, "main/selectRoomTemp.html", {})
 
-def bookRoomFinal(response, id):
-    if(response.method == "POST"):
-        startTime = response.POST.get("start_date")
-        endTime = response.POST.get("end_date")
-    return render(response, "main/book.html", {"start_time":startTime, "end_time":endTime})
-        
+# def bookRoomFinal(response, id, start_year, start_month, start_day, end_year, end_month, end_day):
+#     currentUser = response.user
+#     # if(response.method == "POST"):
+#     #     startTime = response.POST.get("start_date")
+#     #     endTime = response.POST.get("end_date")
+#     #     id = response.POST.get("roomID")
+#     #     r = reservation(room_id = id, client_id = currentUser, start_date1 = startTime, end_date1 = endTime)
+    
+    
 
-        #TODO add to reservation table
+#         #TODO add to reservation table
+
+def bookRoomFinal(response, id, start, end):
+    currentUser = response.user
+    startDay = (int)(start % 100)
+    start = (start - startDay) / 100
+    startMonth = (int)(start % 100)
+    start = (start - startMonth) / 100
+    startYear = (int)(start)
+
+    endDay = (int)(end % 100)
+    end = (end - endDay) / 100
+    endMonth = (int)(end % 100)
+    end = (end - endMonth) / 100
+    endYear = (int)(end)
+
+    startDate = datetime(year=startYear, month=startMonth, day=startDay)
+    endDate = datetime(year=endYear, month=endMonth, day=endDay)
+    currentRoom = room.objects.get(id = id)
+    newReservation = reservation(room_id = currentRoom, client_id = currentUser, start_date1 = startDate, end_date1 = endDate)
+    newReservation.save()
+
+    return render(response, "main/mkTemp.html", {"startDay": startDay, "startMonth": startMonth, "startYear": startYear, "endDay": endDay, "endMonth": endMonth, "endYear": endYear, "id": id})
+    return render(response, "main/book.html", {"start_time":startTime, "end_time":endTime})
+
+    
 def history(response):
     D = {}
     ls = reservation.objects.get()

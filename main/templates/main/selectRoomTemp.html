@@ -1,6 +1,8 @@
 
 
 {% block content %}
+<title>HE</title>
+<h1>HELLO</h1>
 <form method = "post", action ="reservations/", id = "reservationForm">
     {% csrf_token %}
     <input id = "start_date" name = "start_date" type = "date" value = "start_date">
@@ -16,5 +18,3 @@
       </select>
     <button class="button button1", type="submit", name = "book", form = "reservationForm"> Book now! </button>
 </form>
-
-{% endblock %} 
