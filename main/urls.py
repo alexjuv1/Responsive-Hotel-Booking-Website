@@ -21,6 +21,6 @@ urlpatterns = [
     #path("reservations/book/", views.bookRoomFinal,
     path("selectRoom/reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal, name = "booking"),
     path("selectRoomTemp/", views.selectRoomTemp, name = "selectRoomLOL"),
-    path("reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal, name = "booking"), name = "bookRoomFinal"),
+    path("reservations/book/<int:id>/<int:start>/<int:end>/", views.bookRoomFinal, name = "bookRoomFinal"),
     
 ]
