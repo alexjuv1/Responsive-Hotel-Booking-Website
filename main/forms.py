@@ -25,8 +25,9 @@ class reservationForm(forms.Form):
     single = forms.BooleanField(label = "single", initial=False)
 
 class reservationDateHidden(forms.Form):
-    start_date = forms.DateField(widget = DateInput, label = "start_date")
-    end_date = forms.DateField(widget = DateInput, label = "end_date")
+    start_date = forms.DateField(widget = forms.HiddenInput(), label = "start_date")
+    end_date = forms.DateField(widget = forms.HiddenInput(), label = "end_date")
+    roomID = forms.IntegerField(widget = forms.HiddenInput(), label = "roomID")
 
 class roomNumb(forms.Form):
     room_numb = forms.IntegerField(label = "room_numb")

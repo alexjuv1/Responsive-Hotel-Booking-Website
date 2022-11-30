@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 {% for i in D %}
 <h1>Room {{i.room_number}}</h1>
+<!-- <form method = "post", action = "reservations/book/", id = "reservationDateHidden">
+    {% csrf_token %}
+    <input id = "start_date" name = "start_date" type = "date" value = ""
+</form> -->
 
-<form method = "post", action ="reservations/", id = "reservationForm">
+<!-- <form method = "post", action ="reservations/", id = "reservationForm">
     {% csrf_token %}
     <input id = "start_date" name = "start_date" type = "date" value = "start_date">
     <input id = "end_date" name = "end_date" type = "date" value = "end_date">
@@ -16,7 +20,7 @@
         <option value="False">No</option>
       </select>
     <button class="button button1", type="submit", name = "book", form = "reservationForm"> Book now! </button>
-</form>
+</form> -->
 
 <table class="table table-bordered">
     <tr>
@@ -27,7 +31,7 @@
             <br />  Rating: {{i.stars}} stars <span></span>
         </td>
         <td>
-            <a href="#"><input type="submit" class="btn btn-primary" value="Book Now"/></a>
+            <a href="book/{{i.id}}/{{start}}/{{end}}"><input type="submit" class="btn btn-primary" value="Book Now"/></a>
         </td>
     </tr>
 </table>
