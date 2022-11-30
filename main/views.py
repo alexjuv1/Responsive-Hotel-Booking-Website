@@ -223,10 +223,11 @@ def reservationFunction2(response):
 def selectRoomTemp(response):
     return render(response, "main/selectRoomTemp.html", {})
 
-def bookRoomFinal(response):
+def bookRoomFinal(response, id):
     if(response.method == "POST"):
         startTime = response.POST.get("start_date")
         endTime = response.POST.get("end_date")
+        
 
         #TODO add to reservation table
 def history(response):
