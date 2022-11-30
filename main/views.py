@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 #import datetime
 from datetime import *
+from django.views.generic.edit import UpdateView
 from django.db.models import F
 
 #def verifyAccount():
@@ -232,9 +233,23 @@ def bookRoomFinal(response, id):
     if(response.method == "POST"):
         startTime = response.POST.get("start_date")
         endTime = response.POST.get("end_date")
+    return render(response, "main/book.html", {"start_time":startTime, "end_time":endTime})
         
 
         #TODO add to reservation table
 def history(response):
     D = {}
     ls = reservation.objects.get()
+
+def editProfile(response):
+    user = response.user
+    return render(response, "main/editprofile.html", {"ls":user})
+
+def saveChanges(response):
+    x = response.user
+    x.set_username = response.POST.get("username")
+    x.set_first_name = response.POST.get("first_name")
+    x.set_last_name = response.POST.get("last_name")
+    x.set_email = response.POST.get("new_email")
+    x.save()
+    return render(response, "main/homepages.html", {"ls":x})
