@@ -31,3 +31,7 @@ class reservationDateHidden(forms.Form):
 
 class roomNumb(forms.Form):
     room_numb = forms.IntegerField(label = "room_numb")
+
+class reserveRoomDateOnly(forms.Form):
+    start_date = forms.DateField(widget = DateInput, label = "start_date")
+    end_date = forms.DateField(widget = DateInput, label = "end_date")

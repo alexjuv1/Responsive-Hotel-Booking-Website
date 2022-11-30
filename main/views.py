@@ -1,5 +1,5 @@
 import django
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import roomForm
@@ -17,6 +17,7 @@ from django.db.models import F
 
 # def index(response, email, password):
 #     ls = users.objects.get(email == email and password == password)
+
 def index(response, id):
     ls = room.objects.get(room_number=id)
     return render(response, "main/viewRoom.html", {"ls": ls})
@@ -192,11 +193,54 @@ def isRoomValid(roomID, startDate, endDate):
             return False
     return True
 
-    return
+def selectDateOnly(response, id):
+    return render(response, "main/selectDate.html", {"room_id": id})
+
+def calculatePrice(response, id):
+    if(response.method == "POST"):
+        form = reserveRoomDateOnly(response.POST)
+        formDict = form.data
+        if 'start_date' in response.POST and 'end_date' in response.POST:
+            date1 = formDict['start_date']
+            #print(date1)
+            date1Con = datetime.strptime(date1, "%Y-%m-%d")
+            dateFormat = date1Con.strftime('%d-%m-%Y')
+            startTime = datetime.strptime(dateFormat, "%d-%m-%Y")
+
+            date2 = formDict["end_date"]
+            date2Con = datetime.strptime(date2, "%Y-%m-%d")
+            date2Format = date2Con.strftime('%d-%m-%Y')
+            endTime = datetime.strptime(date2Format, "%d-%m-%Y")
+        
+        start = (((startTime.year * 100) + startTime.month) * 100 + startTime.day)
+        end = (((endTime.year * 100) + endTime.month) * 100 + endTime.day)
+
+        requestedRoom = room.objects.get(room_number = id)
+
+        if(startTime > endTime or datetime.date(startTime) < date.today()):
+            return render(response, "main/invalidDateInputs.html", {})
+        
+        if(not isRoomValid(requestedRoom.id, startTime, endTime)):
+            return render(response, "main/invalidDateInputs.html", {})
+        
+        totalLength = endTime - startTime
+        finalPrice = (totalLength.days + 1) * requestedRoom.price_per_night
+        
+        return render(response, "main/finalPrice.html", {"start": start, "end": end, "room": requestedRoom, "total_price": finalPrice})
+    # else:
+    #     startTime = startDate
+    #     endTime = endDate
+    # D = {}
+    # D["room"] = requestedRoom
+    # D["price"] = requestedRoom.price_per_night * lengthOfStay
+    # return render()
+
 def reservationFunction2(response):
     D = {}
     #if response is post / form was submitted
     L = [] * 100
+    if not response.user.is_authenticated:
+        return redirect("/login/")
     if response.method == "POST":
         # i = 0
         form = reservationForm(response.POST)
@@ -257,6 +301,31 @@ def selectRoomTemp(response):
     
 
 #         #TODO add to reservation table
+
+def calculateInvoice(response, id, start, end):
+    temp = start
+    startDay = (int)(temp % 100)
+    temp = (temp - startDay) / 100
+    startMonth = (int)(temp % 100)
+    temp = (temp - startMonth) / 100
+    startYear = (int)(temp)
+
+    temp = end
+    endDay = (int)(temp % 100)
+    temp = (temp - endDay) / 100
+    endMonth = (int)(temp % 100)
+    temp = (temp - endMonth) / 100
+    endYear = (int)(temp)
+
+    startDate = datetime(year=startYear, month=startMonth, day=startDay)
+    endDate = datetime(year=endYear, month=endMonth, day=endDay)
+    currentRoom = room.objects.get(id = id)
+
+    totalStayLength = endDate - startDate
+    totalPrice = (totalStayLength.days + 1) * currentRoom.price_per_night
+
+    return render(response, "main/finalPrice.html", {"start": start, "end": end, "room": currentRoom, "total_price": totalPrice})
+
 
 def bookRoomFinal(response, id, start, end):
     currentUser = response.user
