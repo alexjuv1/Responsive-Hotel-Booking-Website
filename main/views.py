@@ -127,6 +127,11 @@ def viewProfile(response):
     D["email"] = currentUser.email
     return render(response, "", D)
 
+def viewRoom(response, id):
+    room_num = id
+    ls = room.objects.get(room_number = id)
+    return render(response, "main/availability.html", {"room":ls})
+
 def reservationFunction(response):
     D = {}
     #if response is post / form was submitted

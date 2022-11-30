@@ -12,7 +12,7 @@ class room(models.Model):
     stars = models.IntegerField()
 
     def __str__(self):
-        return ("Room Number: "+str(self.room_number) +" "+ "Price per night: $" + str(self.price_per_night) + "\n" + "Single: "+ str(self.single)+ "\n" + "Smoking: "+ str(self.smoking) + "\n" + "Stars: "+ str(self.stars))
+        return ("Room Number: "+str(self.room_number))
 
 class users(models.Model):
     email = models.CharField(max_length=255, blank=True)

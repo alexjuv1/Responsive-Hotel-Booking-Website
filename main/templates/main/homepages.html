@@ -61,7 +61,7 @@
                       </div>
                       <p> A comfortable double bed room with an immaculate veiw of the ocean. This room is smoking.</p>
                       <h5>$350/Night</h5>
-                      <button class="flex1"> <a href="/availability"> 
+                      <button class="flex1"> <a href="/3/viewRoom"> 
                         <span>Check Availability</span></a>
                         <i class="fas fa-arrow-circle-right"></i>
                       </button>
@@ -82,7 +82,7 @@
                       </div>
                       <p> Double bed room with an amazing view, connected to a kids room. This room is anti-smoking</p>
                       <h5>$500/Night</h5>
-                      <button class="flex1"><a href="/availability"> 
+                      <button class="flex1"><a href="6/viewRoom"> 
                         <span>Check Availability</span></a>
                         <i class="fas fa-arrow-circle-right"></i>
                       </button>
@@ -118,9 +118,9 @@
                                 <div id="content">
                                     <i class="fa fa-exclamation" aria-hidden="true"></i>
                                     <select id="smoking">
-                                        <option value="">Smoking</option>
-                                        <option value="">Yes</option>
-                                        <option value="">No</option>
+                                        <option value="" style = "color:black">Smoking</option>
+                                        <option value="true" style = "color:black">Yes</option>
+                                        <option value="false" style = "color:black">No</option>
                                     </select>
                                 </div> 
                             </div>
@@ -134,9 +134,9 @@
                                 <div id="content">
                                     <i class="fa fa-users" aria-hidden="true"></i>
                                     <select id="single">
-                                        <option value ="">Room type</option>
-                                        <option value="single">Single</option>
-                                        <option value="double">Double</option>
+                                        <option value ="" style = "color:black">Room type</option>
+                                        <option value="single" style = "color:black">Single</option>
+                                        <option value="double" style = "color:black">Double</option>
                                     </select>
                                 </div> 
                             </div>
@@ -168,9 +168,13 @@
                               <div class="col-md-12"><label class="labels">UserName: {{username}}</label></div>
                               <div class="col-md-12"><label class="labels">Email ID: {{email}}</label></div>
                               <div class = "col-md-12"><label class = "labels">History of Bookings: </label></div>
-                              <br>
+                              {% for booking in user.history_set.all%}
+                               - {{booking.room_id}} <br> {{booking.days_spent}} days spent <br> Review was: "{{booking.review}}" <br><br>
+                              {% endfor %}
                               
                           </div>
+                          <br>
+                          <button> Edit profile </button>
                       </div>
                   </div>
               </div>
