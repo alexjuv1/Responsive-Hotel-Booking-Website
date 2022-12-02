@@ -8,6 +8,7 @@
        
         
     </head>
+
     <body>
       <section id="Home">
         <header>
@@ -22,8 +23,13 @@
                     </ul>   
                     
                 </div>
+    
     <div class = "content">
+        {% if user.is_superuser %}
         <h2>Reservations:</h2>
         {% for res in reservation %}
             <p> {{res.room_id}} <br> Client: {{res.client_id.first_name}} {{res.client_id.last_name}} <br> Check in: {{res.start_date1}} <br> Check out: {{res.end_date1}} </p>           {% endfor %}
-    </div>
+        {% else %}
+        <h2> ACCESS DENIED </h2>
+        {% endif %}
+        </div>
