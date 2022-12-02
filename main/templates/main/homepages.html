@@ -20,6 +20,9 @@
             {% else %}
                 <a href="/login">Profile</a></p>
             {% endif %}</li>
+            <li>{% if user.is_superuser %}
+              <a href="/adminpage/">Admin</a></p>
+          {% endif %}</li>
                     </ul>   
                 </div>
                 

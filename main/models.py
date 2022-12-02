@@ -12,7 +12,7 @@ class room(models.Model):
     stars = models.IntegerField()
 
     def __str__(self):
-        return ("Room Number: "+str(self.room_number))
+        return ("Room Number: " + str(self.room_number))
 
 class users(models.Model):
     email = models.CharField(max_length=255, blank=True)
@@ -41,8 +41,8 @@ class users(models.Model):
 #         return(self.room_id + " " + self.client_id)
 
 class reservation(models.Model):
-    room_id = models.ForeignKey(room, on_delete=models.DO_NOTHING)
-    client_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    room_id = models.ForeignKey(room, on_delete=models.CASCADE)
+    client_id = models.ForeignKey(User, on_delete=models.CASCADE)
     start_date1 = models.DateField()
     end_date1 = models.DateField()
     def __str__(self):

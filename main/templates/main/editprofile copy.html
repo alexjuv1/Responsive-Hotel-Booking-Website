@@ -5,7 +5,7 @@
         <link rel = "stylesheet" href = "/static/styles.css">
         <meta charset="UTF-8">
         <title>Hotel</title>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+       
         
     </head>
     <body>
@@ -22,15 +22,22 @@
                     </ul>   
                     
                 </div>
-                <title> Create Account </title>
+        
 {% load crispy_forms_tags %}
-<div class = "content">
-{% block content %}
-    <form method = "POST" class="form-group">
-        {% csrf_token %}
-        {{form|crispy}}
-        <div class="g-recaptcha" data-sitekey="6Ldbdg0TAAAAAI7KAf72Q6uagbWzWecTeBWmrCpJ"></div>
-        <button type = "submit" class="btn btn-success">Register</button>
-    </form>
-{% endblock %}
+          <!-- Account details card-->
+          <div class="content">
+              <h2 class="card-header">Edit Profile</h2>
+              <br>
+              <br>
+              <div class="card-body">
+                <form method='POST' id ='ProfileUpdateForm' enctype="multipart/form-data">
+                    {%csrf_token%}
+                    {{u_form|crispy}}
+                    
+                    <button type='submit'>Update</button>
+                </form>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

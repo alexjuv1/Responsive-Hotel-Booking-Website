@@ -26,5 +26,6 @@ urlpatterns = [
     path("selectDate/<int:id>", views.selectDateOnly, name = "Select Date"),
     path("reservations/invoice/<int:id>/<int:start>/<int:end>", views.calculateInvoice, name = "Invoice"),
     path("reservations/book/<int:id>/<int:start>/<int:end>", views.home, name = "Invoice"),
-    path("deleteRes/", views.deleteRes, name = "deleteRes")
+    path("deleteRes/", views.deleteRes, name = "deleteRes"),
+    path("adminpage/", views.adminpage, name = "admin page")
 ]

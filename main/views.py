@@ -376,3 +376,7 @@ def saveChanges(response):
     x.set_email = response.POST.get("new_email")
     x.save()
     return render(response, "main/homepages.html", {"ls":x})
+
+def adminpage(response):
+    x = reservation.objects.all()
+    return render(response, "main/adminpage.html", {"reservation":x})
