@@ -1,6 +1,32 @@
 <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <link rel = "stylesheet" href = "/static/styles.css">
+        <meta charset="UTF-8">
+        <title>Hotel</title>
+       
+        
+    </head>
+    <body>
+      <section id="Home">
+        <header>
+            <div class="banner">
+                <div class="navbar">
+                    <img src="/static/logo123.png" class="logo">
+                    <ul>
+                        <li><a href="/#Home">Home</a></li>
+                        <li><a href="/#Rooms">Rooms</a></li>
+                        <li><a href="/#book">BOOK NOW!</a></li>
+                        <li><a href="/#Profile">Profile</a></li>
+                    </ul>   
+                    
+                </div>
+        
+<div class = "content">
+
 {% for i in D %}
-<h1>Room {{i.room_number}}</h1>
+<h2>Room {{i.room_number}}</h2>
 <!-- <form method = "post", action = "reservations/book/", id = "reservationDateHidden">
     {% csrf_token %}
     <input id = "start_date" name = "start_date" type = "date" value = ""
@@ -22,17 +48,24 @@
     <button class="button button1", type="submit", name = "book", form = "reservationForm"> Book now! </button>
 </form> -->
 
-<table class="table table-bordered">
+
     <tr>
         <td>
             <br /> Smoking: {{i.smoking}}<span></span>
             <br /> Single: {{i.single}}<span></span>
             <br /> Price per night: {{i.price_per_night}} <span></span>
             <br />  Rating: {{i.stars}} stars <span></span>
+            <br>
+            <br>
         </td>
         <td>
-            <a href="invoice/{{i.id}}/{{start}}/{{end}}"><input type="submit" class="btn btn-primary" value="Book Now"/></a>
+            <a href="invoice/{{i.id}}/{{start}}/{{end}}"><input class = "" type="submit" class="submit btn" value="Book Now"/></a>
+            <br>
+            <br>
+            <br>
         </td>
     </tr>
 </table>
 {% endfor %}
+
+</div>

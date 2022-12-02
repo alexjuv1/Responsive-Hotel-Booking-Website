@@ -350,9 +350,15 @@ def bookRoomFinal(response, id, start, end):
     newReservation = reservation(room_id = currentRoom, client_id = currentUser, start_date1 = startDate, end_date1 = endDate)
     newReservation.save()
 
-    return render(response, "main/mkTemp.html", {"startDay": startDay, "startMonth": startMonth, "startYear": startYear, "endDay": endDay, "endMonth": endMonth, "endYear": endYear, "id": id})
-    return render(response, "main/book.html", {"start_time":startTime, "end_time":endTime})
+    #return render(response, "main/mkTemp.html", {"startDay": startDay, "startMonth": startMonth, "startYear": startYear, "endDay": endDay, "endMonth": endMonth, "endYear": endYear, "id": id})
+    return redirect("/")
 
+def deleteRes(response):
+    resid = response.POST.get("resid")
+    room1 = room.objects.get(room_number = resid)
+    res = reservation.objects.get(room_id = room1, client_id = response.user)
+    res.delete()
+    return redirect("/")
     
 def history(response):
     D = {}

@@ -19,6 +19,13 @@
     justify-content: space-between;
 
 }
+
+.login{
+    align-items: center;
+    text-decoration-color: white;
+    background-color: white;
+}
+
 .logo{
     width: 120px;
     cursor: pointer;
@@ -54,6 +61,7 @@
     transform: translateY(-50);
     text-align: center;
     color: #fff;
+    font-size: 40px;
 }
 .content h1{
     font-size: 70px;
@@ -128,6 +136,17 @@ section{
     background: transparent;
     color: white;
     width: 150px;
+    border: 1px solid red;
+    outline: none;
+    padding: 10px;
+    font-size: 20px;
+}
+#cancel-btn{
+    margin-top: 10px;
+    margin-left: 300px;
+    background: transparent;
+    color: white;
+    width: 100px;
     border: 1px solid red;
     outline: none;
     padding: 10px;

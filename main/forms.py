@@ -34,6 +34,9 @@ class roomNumb(forms.Form):
 class usernamePass(forms.Form):
     username = forms.CharField(label = "username")
 
+class deleteRes(forms.Form):
+    resid = forms.IntegerField(label = "resid")
+
 
 class reserveRoomDateOnly(forms.Form):
     start_date = forms.DateField(widget = DateInput, label = "start_date")

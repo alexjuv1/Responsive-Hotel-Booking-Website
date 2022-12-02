@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-        <link rel="stylesheet" href="C:\Users\Alex\Documents\GitHub\351project\main\static\styles.css">
+        <link rel = "stylesheet" href = "/static/styles.css">
         <meta charset="UTF-8">
         <title>Hotel</title>
        
@@ -13,29 +13,34 @@
         <header>
             <div class="banner">
                 <div class="navbar">
-                    <img src="static\logo.png" class="logo">
+                    <img src="/static/logo123.png" class="logo">
                     <ul>
                         <li><a href="#Home">Home</a></li>
                         <li><a href="#Rooms">Rooms</a></li>
                         <li><a href="#book">BOOK NOW!</a></li>
                         <li><a href="#Profile">Profile</a></li>
                     </ul>   
+                    
+                </div>
+                {% load crispy_forms_tags %}
+                <link rel = "stylesheet" href = "/static/styles.css">
+                <div class="content">
+                    {% block content %}
+                    <form method="post" class="form-group">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <p style = "color:FFFFFF">Don't have an account? Create one <a href="/register">here</a>!</p>
+                        <button type="submit" class="btn btn-success">Login</button>
+
+                        <button type="submit">Forgot password</button>
+                        
+                    </form>
+                    {% endblock %}
                 </div>
             </div>
+                
+
         </header>
+        
     </section>
 </body>
-
-{% load crispy_forms_tags %}
-
-{% block content %}
-<form method="post" class="form-group">
-    {% csrf_token %}
-    {{form|crispy}}
-    <p>Don't have an account? Create one <a href="/register">here</a>!</p>
-    <button type="submit" class="btn btn-success">Login</button>
-
-    <button type="submit">Forgot password</button>
-    
-</form>
-{% endblock %}
