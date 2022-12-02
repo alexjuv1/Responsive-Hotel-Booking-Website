@@ -61,7 +61,7 @@
     transform: translateY(-50);
     text-align: center;
     color: #fff;
-    font-size: 40px;
+    font-size: 15px;
 }
 .content h1{
     font-size: 70px;
@@ -69,7 +69,7 @@
 }
 .content p{
     margin: 20px auto;
-    font-weight: 100;
+    font-weight: 70;
     line-height: 25px;
 }
 section{

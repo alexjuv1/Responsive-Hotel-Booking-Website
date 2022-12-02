@@ -186,7 +186,8 @@
                               <form method = "post" id = "deleteRes" action = "deleteRes/">
                                 {% csrf_token %}
                                 <input type = "hidden" value = {{booking.room_id.room_number}} name = "resid", id = "resid">
-                                <button type="submit" value="Submit" id="cancel-btn">Cancel Booking</button>
+                                <br>
+                                <button type="submit" value="Submit" id="user">Cancel Booking</button>
                                 <br>
                                 <br>
                               </form>
