@@ -37,7 +37,6 @@ class usernamePass(forms.Form):
 class deleteRes(forms.Form):
     resid = forms.IntegerField(label = "resid")
 
-
 class reserveRoomDateOnly(forms.Form):
     start_date = forms.DateField(widget = DateInput, label = "start_date")
     end_date = forms.DateField(widget = DateInput, label = "end_date")
